@@ -1,11 +1,19 @@
 ---
 import Feature from '../components/Feature.astro';
-import Layout from '../layouts/Layout.astro';
+import ALRLayout from '../layouts/ALRLayout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
+<ALRLayout>
+    <div class="p-4">
+        <div class="font-red-hat-mono text-sm">Red Hat Mono: public static void main(String[] args){}</div>
+        <div class="font-courier-prime text-sm">Courier Prime: public static void main(String[] args){}</div>
+        <div class="font-outfit text-6xl pt-6 pb-3">Nice big statement piece.</div>
+        <div class="font-montserrat text-sm">Montserrat: Standard legible text parts here.</div>
+        <div class="font-outfit text-6xl pt-6 pb-3">Nice big statement piece.</div>
+        <div class="font-libre-franklin text-sm">Libre Franklin: Standard legible text parts here.</div>
+    </div>
     <Feature />
-</Layout>
+</ALRLayout>

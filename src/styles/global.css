@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/**
+ * ALR Added Themes
+ **/
+@theme {
+    --font-montserrat: "Montserrat", sans-serif;
+    --font-red-hat-mono: "Red Hat Mono", monospace;
+    --font-courier-prime: "Courier Prime", monospace;
+    --font-outfit: "Outfit", sans-serif;
+    --font-libre-franklin: "Libre Franklin", sans-serif;
+  }
