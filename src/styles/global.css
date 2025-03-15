@@ -10,3 +10,43 @@
     --font-outfit: "Outfit", sans-serif;
     --font-libre-franklin: "Libre Franklin", sans-serif;
   }
+
+@layer base {
+    h1 {
+        font-size: var(--text-4xl);
+        font-family: var(--font-montserrat);
+    }
+    h2 {
+        font-size: var(--text-3xl);
+        font-family: var(--font-montserrat);
+    }
+    h3 {
+        font-size: var(--text-2xl);
+        font-family: var(--font-montserrat);
+    }
+    h4 {
+        font-size: var(--text-xl);
+        font-family: var(--font-montserrat);
+    }
+    h5 {
+        font-size: var(--text-lg);
+        font-family: var(--font-montserrat);
+    }
+    h6 {
+        font-size: var(--text-md);
+        font-family: var(--font-montserrat);
+    }
+    p {
+        font-size: var(--text-sm);
+        font-family: var(--font-libre-franklin);
+        margin-bottom: 1em;
+    }
+    code {
+        font-size: var(--text-sm);
+        font-family: var(--font-courier-prime);
+        padding: 1rem;
+    }
+    hr {
+        margin: 1rem;
+    }
+}

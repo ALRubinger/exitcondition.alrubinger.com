@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<base href={import.meta.env.BASE_URL} />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL + '/favicon.svg' } />
 		<meta name="generator" content={Astro.generator} />
 		<title>exitcondition.alrubinger.com</title>
 
@@ -12,8 +13,19 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
 	</head>
-	<body class="font-poppins">
-		<slot />
+	<body>
+		
+		<div class="h-12 bg-gray-700 p-2 pl-4 text-white">Header</div>
+		<div class="h-10 bg-gray-300 p-2 pl-4 md:hidden block">Navigation</div>
+		<div class="flex overflow:hidden">
+			<!-- Sidebar -->
+			<div class="hidden md:block h-vh md:w-78 md:min-w-78 bg-gray-300 p-2 pl-4 pt-4">Navigation</div>
+			
+			<!-- Main Content -->
+			<div class="flex-1 p-4 max-w-3xl object-contain">
+				<slot />
+			</div>
+		</div>
 	</body>
 </html>
 
@@ -25,3 +37,4 @@
 		height: 100%;
 	}
 </style>
+
