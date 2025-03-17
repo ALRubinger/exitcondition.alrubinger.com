@@ -15,5 +15,10 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [react(), mdx()]
+  integrations: [react(), mdx()],
+  markdown: {
+    shikiConfig: {
+      theme: 'dark-plus',
+    },
+  },
 });

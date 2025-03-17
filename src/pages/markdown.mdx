@@ -2,12 +2,16 @@ import '/src/styles/global.css'
 import SidebarLayout from '../layouts/SidebarLayout.astro';
 
 <SidebarLayout>
-# **Markdown Guide and Styling Example**
-This page shows the supported Markdown > HTML styles and how they'll render on the page. It's
+# **Markdown Guide and Styles Example**
+This reference shows the supported Markdown > HTML styles and how they'll render on the page. It's
 used both for development of this theme and as a reference for authors writing new documentation.
 
-# This is an **H1** Header
-Looking good. This is what body text will look like. Let's do the rest.
+It is adapted from [`@allysonsilva`'s excellent example](https://gist.github.com/allysonsilva/85fff14a22bbdf55485be947566cc09e).
+
+------
+
+# Headers (This is an **H1**)
+Looking good. And this is what body text will look like under it. Let's do the rest.
 
 ## This is an **H2** Header
 
@@ -17,181 +21,115 @@ Looking good. This is what body text will look like. Let's do the rest.
 
 ##### This is an **H5** Header
 
-###### This is an **H6** Header
-
-------
-
-| Month    | Savings |
-| -------- | ------- |
-| January  | $250    |
-| February | $80     |
-| March    | $420    |
-
-```
-Code block
-```
-
-**Something bold** and *Something italic*
-
-```java
-System.out.println("Hello World");
-```
-
-This is adapted from [allysonsilva](https://gist.github.com/allysonsilva/85fff14a22bbdf55485be947566cc09e).
+###### This is an **H6** Header. Can you still read me?
 
 ------
 
 # Emphasis
 
-Emphasis, aka italics, with *asterisks* or _underscores_.
+See Markdown Documentation [here](https://www.markdownguide.org/basic-syntax/#emphasis)
+and [here](https://www.markdownguide.org/extended-syntax/#strikethrough).
 
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+Emphasis, aka italics, with *asterisks* `*` or _underscores_ `_` surrounding the text.
 
-Combined emphasis with **asterisks and _underscores_**.
+Strong **emphasis**, aka **bold**, with two **asterisks** `**` or __underscores__ `__` surrounding the text.
 
-Strikethrough uses two tildes. ~~Scratch this.~~
+~~Strikethrough~~ uses two tildes `~~`.
 
-**This is bold text**
-
-__This is bold text__
-
-*This is italic text*
-
-_This is italic text_
-
-~~Strikethrough~~
+You may *combine ~~some~~ __emphasis__* using these together.
 
 ------
 
 # Lists
 
-1. First ordered list item
-2. Another item
-  * Unordered sub-list.
-1. Actual numbers don't matter, just that it's a number
-  1. Ordered sub-list
-4. And another item.
+## Unordered Lists
 
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#unordered-lists).
 
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
+* First item 
+  * 2nd-level sub-item 
+    * 3rd-level sub-item 
+      * 4th level sub-item 
+   * 2nd, 2nd-level sub-item 
 
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
+## Ordered Lists
 
-1. Make my changes
-    1. Fix bug
-    2. Improve formatting
-        - Make the headings bigger
-2. Push my commits to GitHub
-3. Open a pull request
-    * Describe my changes
-    * Mention all the members of my team
-        * Ask for feedback
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#ordered-lists).
 
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
+1. First item
+2. Second item
+3. Third item
+    1. Indented item
+    2. Indented item
+4. Fourth item
 
 ------
 
 # Task lists
-- [x] this is a complete item
-- [ ] this is an incomplete item
+
+See [Markdown Documentation](https://www.markdownguide.org/extended-syntax/#task-lists)
+
+- [x] Completed item
+- [ ] Incomplete item you probably should finish
 
 ------
 
 # Ignoring Markdown formatting
 
-You can tell GitHub to ignore (or escape) Markdown formatting by using \ before the Markdown character.
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#escaping-characters).
 
-Let's rename \*our-new-project\* to \*our-old-project\*.
+You may ignore (espace) Markdown formatting by using `\` before the Markdown character.
+
+For instance: "Let's rename \*our-new-project\* to \*our-old-project\*".
 
 ------
 
 # Links
 
-[I'm an inline-style link](https://www.google.com)
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#links).
 
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
-
-[I'm a reference-style link][Arbitrary case-insensitive reference text]
-
-[I'm a relative reference to a repository file](../blob/master/LICENSE)
-
-[You can use numbers for reference-style link definitions][1]
-
-Or leave it empty and use the [link text itself].
-
-URLs and URLs in angle brackets will automatically get turned into links.
-http://www.example.com
-example.com (but not on Github, for example).
-
-Some text to show that the reference links can follow later.
-
-[arbitrary case-insensitive reference text]: https://www.mozilla.org
-[1]: http://slashdot.org
-[link text itself]: http://www.reddit.com
+Here's an [inline-style link](https://www.google.com) 
+and [another inline-style link with a title](https://www.google.com "Google's Homepage").
+URLs and URLs in angle brackets will automatically get turned into links, like http://www.google.com.
 
 ------
 
 # Images
 
-Here's our logo (hover to see the title text):
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#images-1). Please
+remember to use `alt` text and titles.
 
-Inline-style:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-
-Reference-style:
-![alt text][logo]
-
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+![alt text](https://cdn.sanity.io/images/8m3angk4/production/a0b3ab0a0abdd1755bb7864b34fcbfc5967206cf-1200x675.gif?auto=format "Block Logo")
 
 ------
 
-# Code and Syntax Highlighting
+# Fenced Code Blocks
 
-Inline `code` has `back-ticks around` it.
+See Markdown Documentation [here](https://www.markdownguide.org/basic-syntax/#code) 
+and [here](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks).
 
-c#:
-```c#
-using System.IO.Compression;
+Inline `code` has back-ticks `` ` `` surrounding it. Code blocks have 3 back-ticks `` ``` `` 
+in the lines above and below the code block. The back-ticks above the code block may optionally denote
+a language like `` ```javascript `` or `` ```css ``.
 
-#pragma warning disable 414, 3021
-
-namespace MyApplication
-{
-    [Obsolete("...")]
-    class Program : IInterface
-    {
-        public static List<int> JustDoIt(int count)
-        {
-            Console.WriteLine($"Hello {Name}!");
-            return new List<int>(new int[] { 1, 2, 3 })
-        }
-    }
+## JavaScript
+```javascript
+function $initHighlight(block, cls) {
+  try {
+    if (cls.search(/\bno\-highlight\b/) != -1)
+      return process(block, true, 0x0F) +
+             ` class="${cls}"`;
+  } catch (e) {
+    /* handle exception */
+  }
+  for (var i = 0 / 2; i < classes.length; i++) {
+    if (checkCondition(classes[i]) === undefined)
+      console.log('undefined');
+  }
 }
 ```
 
-css:
+## CSS
 ```css
 @font-face {
   font-family: Chunkfive; src: url('Chunkfive.otf');
@@ -210,26 +148,7 @@ body, .usertext {
 }
 ```
 
-JavaScript:
-```javascript
-function $initHighlight(block, cls) {
-  try {
-    if (cls.search(/\bno\-highlight\b/) != -1)
-      return process(block, true, 0x0F) +
-             ` class="${cls}"`;
-  } catch (e) {
-    /* handle exception */
-  }
-  for (var i = 0 / 2; i < classes.length; i++) {
-    if (checkCondition(classes[i]) === undefined)
-      console.log('undefined');
-  }
-}
-
-export  $initHighlight;
-```
-
-Java:
+### Java
 ```java
 import static System.out;
 
@@ -242,81 +161,51 @@ public static void main(String[] args) {
 
 # Tables
 
-Colons can be used to align columns.
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+See [Markdown Documentation](https://www.markdownguide.org/extended-syntax/#tables).
 
 There must be at least 3 dashes separating each header cell.
-The outer pipes (|) are optional, and you don't need to make the
+The outer pipes `|` are optional, and you don't need to make the
 raw Markdown line up prettily. You can also use inline Markdown.
-
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
 
 | Command | Description |
 | --- | --- |
 | `git status` | List all *new or modified* files |
 | `git diff` | Show file differences that **haven't been** staged |
 
+Colons can be used to align columns left `:---`, center `:---:`, or right ` ---:`.
+
 | Left-aligned | Center-aligned | Right-aligned |
 | :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
-
-| Name     | Character |
-| ---      | ---       |
-| Backtick | `         |
-| Pipe     | \|        |
+| `git status`   | `git status`     | `git status`    |
+| `git diff`     | `git diff`       | `git diff`      |
 
 ------
 
 # Blockquotes
 
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#blockquotes-1).
+
 > Blockquotes are very handy in email to emulate reply text.
-> This line is part of the same quote.
+> This line is part of the same quote even though the source is on a new line.
 
 Quote break.
 
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
+> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. You can *put* **Markdown** into a blockquote.
 
 > Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
+>> ...by using additional greater-than `>` signs right next to each other...
 > > > ...or with spaces between arrows.
 
 ------
 
 # Horizontal Rules
 
-Three or more...
+Create a horizonal rule with 3 or more:
 
----
+* Hyphens `---`
+* Asterisks `***`
+* or Underscores `___` 
 
-Hyphens
-
-***
-
-Asterisks
-
-___
-
-Underscores
-
-------
+...on its own line.
 
 </SidebarLayout>
