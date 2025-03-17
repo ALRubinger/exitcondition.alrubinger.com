@@ -1,3 +1,8 @@
+---
+// Import custom.css which will then import global.css
+import '../styles/custom.css';
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -22,7 +27,7 @@
 			<div class="hidden md:block h-vh md:w-80 md:min-w-80 bg-gray-300 p-2 pl-4 pt-4">Navigation</div>
 			
 			<!-- Main Content -->
-			<div class="flex-1 p-4 max-w-4xl object-contain">
+			<div class="flex-1 p-4 max-w-4xl object-contain bg-zinc-50">
 				<slot />
 			</div>
 			<div class="hidden xl:block h-vh xl:min-w-70 3xl:min-w-70 bg-gray-300 p-2 pl-4 pt-4">TOC</div>
@@ -38,4 +43,3 @@
 		height: 100%;
 	}
 </style>
-
