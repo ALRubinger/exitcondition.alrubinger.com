@@ -1,6 +1,20 @@
 @import "tailwindcss";
 
-/* CSS Variables that can be used by both global.css and custom.css */
+/*
+ 
+  Configure the theme here.
+  
+  The most simple controls for configuring this theme are located here. It's the 
+  first place that implementing projects should look to define colors, fonts, and 
+  more.
+
+  Later sections of this CSS file will rely upon the variables defined here.
+
+  Note: Ideally this would be separated out in its own file to denote the purpose here,
+        but HMR (the hot reloading mechanism used in dev environments) is not picking 
+        up changes to nested @import CSS files. CAn investigate this later.
+
+ */
 :root {
 
   /**
@@ -31,6 +45,18 @@
 
   /* Add your custom variables here */
 }
+
+/*
+ 
+  ===============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  ||  Customizing the theme is below this line.
+  ===============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  The theme is defined here. Simple projects may not wish to touch this, as CSS configuration
+  made here is referred to within the layouts and base HTML types. Edit this only if you are looking to apply custom
+  changes to the theme and are aware of the impacts.
+
+ */
 
 @layer base {
 
