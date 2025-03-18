@@ -1,0 +1,209 @@
+---
+title: Markdown Guide and Styles Example
+description: This reference shows the supported Markdown > HTML styles and how they'll render on the page. It's used both for development of this theme and as a reference for authors writing new documentation.
+slug: docs/examples/markdown
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+This guide is adapted from [`@allysonsilva`'s excellent example](https://gist.github.com/allysonsilva/85fff14a22bbdf55485be947566cc09e).
+
+------
+
+## This is an **H2** Header
+
+### This is an **H3** Header
+
+#### This is an **H4** Header
+
+##### This is an **H5** Header
+
+###### This is an **H6** Header. Can you still read me?
+
+------
+
+## Emphasis
+
+See Markdown Documentation [here](https://www.markdownguide.org/basic-syntax/#emphasis)
+and [here](https://www.markdownguide.org/extended-syntax/#strikethrough).
+
+Emphasis, aka italics, with *asterisks* `*` or _underscores_ `_` surrounding the text.
+
+Strong **emphasis**, aka **bold**, with two **asterisks** `**` or __underscores__ `__` surrounding the text.
+
+~~Strikethrough~~ uses two tildes `~~`.
+
+You may *combine ~~some~~ __emphasis__* using these together.
+
+------
+
+## Lists
+
+### Unordered Lists
+
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#unordered-lists).
+
+* First item 
+  * 2nd-level sub-item 
+    * 3rd-level sub-item 
+      * 4th level sub-item 
+   * 2nd, 2nd-level sub-item 
+
+### Ordered Lists
+
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#ordered-lists) and 
+[Starlight Documentation of the Steps Component](https://starlight.astro.build/components/steps/).
+
+<Steps>
+1. First item
+2. Second item
+3. Third item
+    1. Indented item
+    2. Indented item
+4. Fourth item
+</Steps>
+
+------
+
+## Task lists
+
+See [Markdown Documentation](https://www.markdownguide.org/extended-syntax/#task-lists)
+
+- [x] Completed item
+- [ ] Incomplete item you probably should finish
+
+------
+
+## Ignoring Markdown formatting
+
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#escaping-characters).
+
+You may ignore (espace) Markdown formatting by using `\` before the Markdown character.
+
+For instance: "Let's rename \*our-new-project\* to \*our-old-project\*".
+
+------
+
+## Links
+
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#links).
+
+Here's an [inline-style link](https://www.google.com) 
+and [another inline-style link with a title](https://www.google.com "Google's Homepage").
+URLs and URLs in angle brackets will automatically get turned into links, like http://www.google.com.
+
+------
+
+## Images
+
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#images-1). Please
+remember to use `alt` text and titles.
+
+![alt text](https://cdn.sanity.io/images/8m3angk4/production/a0b3ab0a0abdd1755bb7864b34fcbfc5967206cf-1200x675.gif?auto=format "Block Logo")
+
+------
+
+## Fenced Code Blocks
+
+See Markdown Documentation [here](https://www.markdownguide.org/basic-syntax/#code) 
+and [here](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks).
+
+Inline `code` has back-ticks `` ` `` surrounding it. Code blocks have 3 back-ticks `` ``` `` 
+in the lines above and below the code block. The back-ticks above the code block may optionally denote
+a language like `` ```javascript `` or `` ```css ``.
+
+### JavaScript
+```javascript
+function $initHighlight(block, cls) {
+  try {
+    if (cls.search(/\bno\-highlight\b/) != -1)
+      return process(block, true, 0x0F) +
+             ` class="${cls}"`;
+  } catch (e) {
+    /* handle exception */
+  }
+  for (var i = 0 / 2; i < classes.length; i++) {
+    if (checkCondition(classes[i]) === undefined)
+      console.log('undefined');
+  }
+}
+```
+
+### CSS
+```css
+@font-face {
+  font-family: Chunkfive; src: url('Chunkfive.otf');
+}
+
+body, .usertext {
+  color: #F0F0F0; background: #600;
+  font-family: Chunkfive, sans;
+}
+
+@import url(print.css);
+@media print {
+  a[href^=http]::after {
+    content: attr(href)
+  }
+}
+```
+
+### Java
+```java
+import static System.out;
+
+public static void main(String[] args) {
+  out.println("Testing Java");
+}
+```
+
+------
+
+## Tables
+
+See [Markdown Documentation](https://www.markdownguide.org/extended-syntax/#tables).
+
+There must be at least 3 dashes separating each header cell.
+The outer pipes `|` are optional, and you don't need to make the
+raw Markdown line up prettily. You can also use inline Markdown.
+
+| Command | Description |
+| --- | --- |
+| `git status` | List all *new or modified* files |
+| `git diff` | Show file differences that **haven't been** staged |
+
+Colons can be used to align columns left `:---`, center `:---:`, or right ` ---:`.
+
+| Left-aligned | Center-aligned | Right-aligned |
+| :---         |     :---:      |          ---: |
+| `git status`   | `git status`     | `git status`    |
+| `git diff`     | `git diff`       | `git diff`      |
+
+------
+
+## Blockquotes
+
+See [Markdown Documentation](https://www.markdownguide.org/basic-syntax/#blockquotes-1).
+
+> Blockquotes are very handy in email to emulate reply text.
+> This line is part of the same quote even though the source is on a new line.
+
+Quote break.
+
+> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. You can *put* **Markdown** into a blockquote.
+
+> Blockquotes can also be nested...
+>> ...by using additional greater-than `>` signs right next to each other...
+> > > ...or with spaces between arrows.
+
+------
+
+## Horizontal Rules
+
+Create a horizonal rule with 3 or more:
+
+* Hyphens `---`
+* Asterisks `***`
+* or Underscores `___` 
+
+...on its own line.

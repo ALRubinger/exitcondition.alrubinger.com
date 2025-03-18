@@ -1,0 +1,15 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+---
+
+<!-- 
+
+  We override the default component so we can wrap the generated Markdown in a custom class.
+  This helps us align CSS with Markdown providers outside Starlight for consistent styling.
+  
+-->
+
+<div class="block-page-content">
+<Default {...Astro.props}><slot /></Default>
+</div>

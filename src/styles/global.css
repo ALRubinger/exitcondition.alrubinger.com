@@ -2,202 +2,297 @@
 
 /*
  
-  Configure the theme here.
+  Block Documentation Site Configuration
   
   The most simple controls for configuring this theme are located here. It's the 
   first place that implementing projects should look to define colors, fonts, and 
   more.
 
+  These are used both in the Block custom components and in the Starlght
+  documentation configuration for consistency across the site.
+
   Later sections of this CSS file will rely upon the variables defined here.
 
   Note: Ideally this would be separated out in its own file to denote the purpose here,
         but HMR (the hot reloading mechanism used in dev environments) is not picking 
-        up changes to nested @import CSS files. CAn investigate this later.
+        up changes to nested @import CSS files. Perhaps due to this, open at the 
+        time of this writing:
+
+        https://github.com/vitejs/vite/issues/16074
 
  */
-:root {
-
-  /**
-   * Color Palette Configuration
-   */
-  --color-default: var(--color-gray-600);
-  --color-emphasis: var(--color-black);
-  --color-emphasis-medium: var(--color-gray-400);
-  --color-emphasis-light: var(--color-gray-100);
-  --color-background: var(--color-gray-50);
-  
+ 
+ :root { 
   /**
    * Define some fonts, used in Font Configuration below. 
    */
-  --font-montserrat: "Montserrat", sans-serif;
-  --font-red-hat-mono: "Red Hat Mono", monospace;
-  --font-courier-prime: "Courier Prime", monospace;
-  --font-outfit: "Outfit", sans-serif;
-  --font-libre-franklin: "Libre Franklin", sans-serif;
 
   /**
-   * Font Configuration
+   * Fonts
    */
-  --font-prose: var(--font-libre-franklin);
-  --font-header: var(--font-montserrat);
-  --font-monospace: var(--font-courier-prime);
+  --block-font-prose: "Libre Franklin", sans-serif;
+  --block-font-header: "Montserrat", sans-serif;
+  --block-font-monospace: "Courier Prime", monospace;
 
+  /**
+   * Colors
+   *
+   * Note that these may be easily generated and mapped to the --block-color-*
+   * values by using the Starlight color theme editor (see more info in Starlight section, 
+   * below).
+   */
 
-  /* Add your custom variables here */
+  /* Dark mode */
+  --block-color-accent-low: #113773;
+  --block-color-accent: #b0ccf9;
+  --block-color-accent-high: #c4d9fb;
+  --block-color-contrast-highest: #ffffff;
+  --block-color-contrast-1: #eceef2;
+  --block-color-contrast-2: #c0c2c7;
+  --block-color-contrast-3: #888b96;
+  --block-color-contrast-4: #545861;
+  --block-color-contrast-5: #353841;
+  --block-color-contrast-6: #24272f;
+  --block-color-contrast-lowest: #17181c;
+
+  /* Light mode */
+  &[data-theme='light'] {
+    --block-color-accent-low: #c4d9fb;
+    --block-color-accent: #67a0fc;
+    --block-color-accent-high: #113773;
+    --block-color-contrast-highest: #17181c;
+    --block-color-contrast-1: #24272f;
+    --block-color-contrast-2: #353841;
+    --block-color-contrast-3: #545861;
+    --block-color-contrast-4: #888b96;
+    --block-color-contrast-5: #c0c2c7;
+    --block-color-contrast-6: #eceef2;
+    --block-color-contrast-7: #f5f6f8;
+    --block-color-contrast-lowest: #ffffff;
+  }
 }
+
+  /* Add more "--block-*" custom variables here */
 
 /*
  
   ===============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  ||  Customizing the theme is below this line.
+  ||  Customizing Starlight, used in the documentation sections
   ===============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  The full list of available properties is:
+
+     https://github.com/withastro/starlight/blob/main/packages/starlight/style/props.css
+
+  These may be easily generated in a Web Content Accessibility Guideline standards-compliant way
+  by using the color theme editor:
+
+    https://starlight.astro.build/guides/css-and-tailwind/#color-theme-editor
 
   The theme is defined here. Simple projects may not wish to touch this, as CSS configuration
   made here is referred to within the layouts and base HTML types. Edit this only if you are looking to apply custom
   changes to the theme and are aware of the impacts.
 
  */
+:root {
+  /* Fonts; make sure these are included in src/components/starlight/Head.astro. or they won't render */ 
+  --sl-font: var(--block-font-prose);
+  --sl-font-mono: var(--block-font-monospace);
 
-@layer base {
-
-  a {
-    color: var(--color-emphasis);
-    font-weight: 600;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-
-  /* 
-   * Headers
+  /*
+   * Starlight color properties. 
+   * 
+   * These will map to Block variables and inherit the light/dark mode switching from them.
    */
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: .5rem; 
-    margin-bottom: .5rem;
-    color: var(--color-default);
-    font-family: var(--font-header);
-  }
-  h1 {
-    font-size: var(--text-4xl);
-  }
-  h2 {
-    font-size: var(--text-3xl);
-  }
-  h3 {
-    font-size: var(--text-2xl);
-  }
-  h4 {
-    font-size: var(--text-xl);
-  }
-  h5 {
-    font-size: var(--text-lg);
-  }
-  h6 {
-    font-size: var(--text-md);
+  --sl-color-accent: var(--block-color-accent);
+  --sl-color-accent-high: var(--block-color-accent-high);
+  --sl-color-accent-low: var(--block-color-accent-low);
+  --sl-color-text-accent: var(--block-color-accent);
+  --sl-color-text-invert: var(--block-color-contrast-6);
+  --sl-color-bg-accent: var(--block-color-accent);
+  --sl-color-white: var(--block-color-contrast-highest);
+  --sl-color-gray-1: var(--block-color-contrast-1);
+  --sl-color-gray-2: var(--block-color-contrast-2);
+  --sl-color-gray-3: var(--block-color-contrast-3);
+  --sl-color-gray-4: var(--block-color-contrast-4);
+  --sl-color-gray-5: var(--block-color-contrast-5);
+  --sl-color-gray-6: var(--block-color-contrast-6);
+  --sl-color-black: var(--block-color-contrast-lowest);
+
+ }
+
+
+:root {
+
+  /*
+
+    These are the styles that will be applied to all page content, whether 
+    it's using Starlight or the Astro MDX Plugin. Both are wrapped with a 
+    <div class="block-markdown-content" so we can get uniformity in how these
+    are styled
+
+  */
+  .block-page-content {
+
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--block-font-header);
+      margin-top: 1rem;
+    }
+    h1 {
+      font-size: var(--text-4xl);
+    }
+    h2 {
+      font-size: var(--text-3xl);
+    }
+    h3 {
+      font-size: var(--text-2xl);
+    }
+    h4 {
+      font-size: var(--text-xl);
+    }
+    h5 {
+      font-size: var(--text-lg);
+    }
+    h6 {
+      font-size: var(--text-md);
+    }
+
+    /* Standard page text */
+    p {
+      font-family: var(--block-font-prose);
+      line-height: 1.5rem;
+      margin-bottom: .5rem;
+      margin-top: .5rem;
+    }
+
+    /* Links */
+    a {
+      font-weight: 600;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Horizontal rules */
+    hr {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      margin-top: 2rem;
+      border-color: var(--block-color-accent-high);
+    }
+
+    /* 
+     * Formatting for inline code, but not code blocks. That
+     * would mess with the formatters and syntax highlighters 
+     */
+    code:not(pre code){
+      font-size: var(--text-sm);
+      font-family: var(--font-monospace);
+      font-weight: 500;
+      outline-style: solid;
+      outline-width: 1px;
+      outline-color: var(--block-color-accent-low);
+      background-color: var(--block-color-accent-high);
+      color: var(--block-color-accent-low);
+      border-radius: .25rem;
+      padding: .15rem .5rem .15rem .5rem;
+      margin-left: .15rem;
+      margin-right: .15rem
+    }
+
+    /* Tables */
+    table {
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    thead, tbody {
+      border-style: solid;
+      border-color: var(--block-color-contrast-4);
+      border-width: 1px;
+    }
+    th, td {
+      padding-left: .75rem;
+      padding-right: .75rem;
+      padding-top: .25rem;
+      padding-bottom: .25rem;
+    }
+    th {
+      font-family: var(--block-font-prose);
+      background-color: var(--block-color-contrast-5);
+      color: var(--block-color-contrast-1);
+    }
+    td {
+      font-family: var(--block-font-prose);
+      border-color: var(--block-color-contrast-4);
+      border-width: 1px;
+    }
+
+    /* Blockquotes */
+    blockquote {
+      background-color: var(--block-color-contrast-6);
+      border-left-style: solid;
+      border-left-width: 3px;
+      border-left-color: var(--block-color-accent-high);
+      padding: 1rem;
+    }
+
   }
 
   /*
-   * Standard page text 
-   */
-  p {
-    font-size: var(--text-sm);
-    font-family: var(--font-prose);
-    line-height: 1.5rem;
-    margin-bottom: .5rem;
-    margin-top: .5rem;
-    color: var(--color-default)
-  }
 
-  /* 
-   * Formatting for inline code, but not code blocks. That
-   * would mess with the formatters and syntax highlighters 
-   */
-  code:not(pre code){
-    font-size: var(--text-sm);
-    font-family: var(--font-monospace);
-    outline-style: solid;
-    outline-width: 1px;
-    outline-color: var(--color-emphasis);
-    background-color: var(--color-emphasis-light);
-    border-radius: .25rem;
-    padding: .15rem .5rem .15rem .5rem;
-    margin-left: .15rem;
-    margin-right: .15rem
-  }
+    This is content in Block's rendering of Markdown
 
-  /* 
-   * Horizontal rules
-   */
-  hr {
-    margin: 1rem;
-  }
+    We theme colors here because we don't have Starlight in this environment to do it for us.
 
-  /*
-   * Lists 
-   */
-  li {
-    font-size: var(--text-sm);
-    font-family: var(--font-prose);
-    color: var(--color-default)
-  }
-  ul, ol  {
-    padding-left: 1rem;
-  }
-  ul>li {
-    padding-left: 1rem;
-    list-style-type: disc;
-    list-style-position: inside;
-  }
-  ol {
-    counter-reset: item;
-  }
-  ol>li {
-    display: block;
-    padding-left: 1rem;
-  }
-  ol>li:before { 
-    content: counters(item, ".") ". "; 
-    counter-increment: item;
-  }
+  */
+  .block-markdown-content {
 
-  /*
-   * Tables
-   */
-  table {
-    margin-bottom: 1rem;
-  }
-  th {
-    background-color: var(--color-emphasis-light);
-  }
-  table, th, td {
-    border-style: solid;
-    border-color: var(--color-emphasis);
-    border-width: 1px;
-    padding-left: .5rem;
-    padding-right: .5rem;
-    padding-top: .25rem;
-    padding-bottom: .25rem;
-  }
+    /* Links */
+    a {
+      font-weight: 600;
+      color: var(--block-color-accent);
+    }
+    a:hover {
+      text-decoration: underline;
+    }
 
-  /*
-   * Fenced Code blocks
-   */
-  .astro-code {
-    padding: 1rem;
-  }
-  .astro-code, .astro-code span {
-    font-style: var(--font-monospace);
-    font-size: var(--text-sm);
-  }
+    /* Lists */
+    li {
+      font-size: var(--text-sm);
+      font-family: var(--font-prose);
+    }
+    ul, ol  {
+      padding-left: 1rem;
+    }
+    ul>li {
+      padding-left: 1rem;
+      list-style-type: disc;
+      list-style-position: inside;
+    }
+    ol {
+      counter-reset: item;
+    }
+    ol>li {
+      display: block;
+      padding-left: 1rem;
+    }
+    ol>li:before { 
+      content: counters(item, ".") ". "; 
+      counter-increment: item;
+    }
 
-  /*
-   * Blockquotes
-   */
-  blockquote {
-    background-color: var(--color-emphasis-light);
-    border-left-style: solid;
-    border-left-width: .5rem;
-    border-left-color: var(--color-emphasis-medium);
-    padding: 1rem;
   }
 }
+
+/*
+ 
+  ===============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  ||  Further customizations
+  ===============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  The overall theme for the site is defined here. Simple projects may not wish to touch this, as CSS configuration
+  made here is referred to within the layouts and base HTML types. Edit this only if you are looking to apply custom
+  changes to the theme and are aware of the impacts.
+
+ */
