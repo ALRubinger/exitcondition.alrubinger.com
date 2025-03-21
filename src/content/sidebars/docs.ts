@@ -3,9 +3,26 @@
  */
 export default [
   {
-    label: 'Starlight Components',
-    autogenerate: { directory: 'components/starlight' },
-    collapsed: true,
+    label: 'Components',
+    collapsed: false,
+    items: [
+      {
+        label: 'Expressive Code',
+        autogenerate: { 
+          directory: 'components/expressive-code',
+          collapsed: true,
+        },
+        collapsed: true,
+      },
+      {
+        label: 'Starlight',
+        autogenerate: { 
+          directory: 'components/starlight',
+          collapsed: true,
+        },
+        collapsed: true,
+      },
+    ]
   },
   {
     label: 'Examples',
