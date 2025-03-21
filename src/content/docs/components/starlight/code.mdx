@@ -1,0 +1,41 @@
+---
+title: Code
+description: A reference for the Expressive Code Component
+slug: docs/components/starlight/code
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+
+See [Expressive Code Documentation](https://expressive-code.com/key-features/code-component/).
+
+## Inline Style
+
+export const exampleCode = `console.log('This could come from a file or CMS!');`
+export const fileName = 'example.js'
+export const highlights = ['file', 'CMS']
+
+<Code code={exampleCode} lang="js" mark={highlights} showLineNumbers={false} />
+
+## Terminal Style
+
+<Code code="$> pnpm run dev" lang="js" title="Terminal" mark={highlights} frame="terminal" showLineNumbers={false}/>
+
+## Markdown Format
+```js title="console-log.js" 
+console.log("This Markdown-style declaration is " +
+  "also expressive code under the hood");
+```
+
+```bash title="Terminal" showLineNumbers=false frame="terminal"
+$> npm run dev
+```
+
+export const fileNameJava = 'assets/ArchiveFactory.java'
+export const highlightsJava = ['return create(type, archiveName + extension);']
+import importedCode from 'assets/ArchiveFactory.java?raw'
+
+## File Import, Highlights, Line Numbers and Collapsable Sections
+This is an extended example which shows highlighting particular parts of the code, 
+importing from a file source, collapsing lines, and showing line numbers
+<Code code={importedCode} lang="java" title={fileNameJava} mark={highlightsJava} collapse="1-36, 38-95, 112-197" showLineNumbers="true"/>

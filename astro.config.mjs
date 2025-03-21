@@ -63,6 +63,14 @@ export default defineConfig({
         sidebar: [
           ...docsSidebar,
         ],
+        // https://expressive-code.com/key-features/syntax-highlighting/#configuration
+        expressiveCode: {
+          themes: ['dracula', 'solarized-light'],
+          shiki: {
+            langs: [
+            ],
+          },
+        }
       }
     ),
     mdx(),
@@ -70,11 +78,6 @@ export default defineConfig({
       applyBaseStyles: false,
     })
   ],
-  markdown: {
-    shikiConfig: {
-      theme: 'dark-plus',
-    },
-  },
   vite: {
     plugins: [tailwindcss()]
   }
