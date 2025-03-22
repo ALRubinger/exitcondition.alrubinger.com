@@ -1,0 +1,65 @@
+---
+title: D2
+description: A reference for the Astro D2 Diagram Rendering support in Markdown
+slug: docs/components/astro-d2/d2
+---
+
+See the [Astro D2 Component Documentation](https://astro-d2.vercel.app/getting-started/) and 
+[D2 Language Reference Guide](https://d2lang.com/tour/intro).
+
+## Styles
+
+### Default
+
+```d2
+direction: right
+Markdown definition -> D2 -> Diagram
+```
+
+### Sketch
+
+```d2 sketch 
+direction: right
+Markdown definition -> D2 -> Diagram
+```
+
+## Sequences
+
+```d2
+shape: sequence_diagram
+
+DevRel -> OSPO: What should I use to create diagrams?
+OSPO -> DevRel: The Astro D2 integration
+```
+
+## Icons
+
+```d2
+container: {
+  icon: https://icons.terrastruct.com/dev%2Fdocker.svg
+  
+  style: {
+    stroke: deepskyblue
+    font-color: deepskyblue
+    fill: white
+
+  }
+  nginx: {
+    icon: https://icons.terrastruct.com/dev%2Fnginx.svg
+
+    style: {
+      stroke: green
+      font-color: green
+      stroke-dash: 3
+      fill: white
+    }
+    astro: Astro {
+      style: {
+        stroke: "#d841c1"
+        font-color: white
+        fill: "#75297f"
+      }
+    }
+  }
+}
+```

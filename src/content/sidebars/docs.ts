@@ -7,6 +7,14 @@ export default [
     collapsed: false,
     items: [
       {
+        label: 'Astro D2',
+        autogenerate: { 
+          directory: 'components/astro-d2',
+          collapsed: true,
+        },
+        collapsed: true,
+      },
+      {
         label: 'Expressive Code',
         autogenerate: { 
           directory: 'components/expressive-code',
