@@ -76,6 +76,7 @@ export default defineConfig({
   tailwindcss( {
     applyBaseStyles: false,
   }), 
+  // https://astro-d2.vercel.app/configuration/#configuration-options
   astroD2({
     theme: {
       default: '8',
