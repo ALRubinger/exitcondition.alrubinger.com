@@ -3,7 +3,7 @@
 ## Installation Prerequsities
 
 ### D2
-D2 is a "A modern diagram scripting language that turns text to diagrams". It may be installed from [here](https://github.com/terrastruct/d2/blob/master/docs/INSTALL.md#macos-homebrew).
+D2 is a "A modern diagram scripting language that turns text to diagrams". It may be installed from [here](https://github.com/terrastruct/d2/blob/master/docs/INSTALL.md).
 
 ```sh
 pnpm create astro@latest -- --template basics
