@@ -1,6 +1,8 @@
 ---
 import { getCollection, render} from 'astro:content';
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Card } from '@astrojs/starlight/components';
+import { formatDate } from '../../components/blog/blogUtils.ts';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -14,10 +16,14 @@ export async function getStaticPaths() {
 
 const post = Astro.props;
 const title = post.data.title;
+const date = formatDate(post.data.pubDate);
 const { Content, headings, remarkPluginFrontmatter } = await render(post);
 console.log(post);
 ---
 
 <StarlightPage frontmatter={{ title: title }} headings={headings}>
+	<Card title="Author Component will go here">
+		<div><i>{ date }</i></div>
+	</Card>
 	<Content />
 </StarlightPage>
