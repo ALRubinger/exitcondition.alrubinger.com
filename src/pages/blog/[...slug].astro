@@ -3,6 +3,8 @@ import { getCollection, render} from 'astro:content';
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { Card } from '@astrojs/starlight/components';
 import { formatDate } from '../../components/blog/blogUtils.ts';
+import BlogHomeIcon from './assets/newspaper.svg'
+import HomeIcon from './assets/home.svg'
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -22,8 +24,34 @@ console.log(post);
 ---
 
 <StarlightPage frontmatter={{ title: title }} headings={headings}>
+	<div class="text-sm not-content block-markdown-content">
+	  <a href={import.meta.env.BASE_URL + "/"}>
+		<HomeIcon />
+		<span>Home</span>
+      </a>&nbsp;&gt;
+	  <a href={import.meta.env.BASE_URL + "/blog/"}>
+		<BlogHomeIcon />
+		<span>Blogs</span>
+      </a>&nbsp;&gt;
+	  <a href={import.meta.env.BASE_URL + "/blog/" + post.id}>
+        {post.data.title}
+	  </a>
+	</div>
+	<Card title="Blog Header Image will go here" />
 	<Card title="Author Component will go here">
 		<div><i>{ date }</i></div>
 	</Card>
 	<Content />
 </StarlightPage>
+
+<style>
+	/* This is to align the home and blog home icons alongside the text */
+	a {
+	  display: inline-block;
+	}
+	a svg {
+	  display: inline-block;
+      vertical-align: bottom;
+	  width: 1.5em;
+}
+</style>

@@ -8,37 +8,7 @@ tags: ["react", "nextjs", "javascript", "netlify"]
 
 import { Aside, FileTree, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
-Blog Posts are written in Markdown, and because it's a full MDX format, this supports all
-dynamic content available to Astro or any of the rest of the docs system as shown in the examples.
-For instance, we can drop complex component sets in here if we want to.
-
-## Multilanguage Code Example
-
-<Tabs>
-  <TabItem label="Java">
-  
-    ```java title="Sup.java"
-    public static void main(String[] args){
-        System.out.println("Sup?");
-    }
-    ```
-
-  </TabItem>
-  <TabItem label="JavaScript">
-  
-    ```javascript title="sup.js"
-    console.log("You tell me what's up?");
-    ```
-  
-  </TabItem>
-  <TabItem label="COBOL">
-  
-    ```bash theme="terminal" title="Just Kidding"
-    $> echo 'I have no idea how to write in COBOL'
-    ```
-  
-  </TabItem>
-</Tabs>
+This guide will walk you through writing a new blog post. 
 
 ## Writing a Blog Post
 
@@ -49,7 +19,7 @@ For instance, we can drop complex component sets in here if we want to.
 <Steps>
 <ol>
   <li> 
-    Create a new `.mdx` file in `/src/blog`:
+    ### Create a new `.mdx` file in `/src/blog`
     <FileTree>
     - src
       - blog
@@ -61,6 +31,8 @@ For instance, we can drop complex component sets in here if we want to.
     with its target URL in mind.
   </li>
   <li>
+
+    ### Add Metadata
 
     At the top of the file you've just created, add 
     "[frontmatter](https://docs.astro.build/en/basics/astro-components/)", a series of 
@@ -87,6 +59,39 @@ For instance, we can drop complex component sets in here if we want to.
     </Aside>
 
   </li>
+  <li>
+    ### Write your post
+
+    Blog Posts are written in Markdown, and because it's a full MDX format, this supports all
+    dynamic content available to Astro or any of the rest of the docs system as shown in the examples.
+    For instance, we can drop complex component sets in here if we want to. Like this:
+
+    <Tabs>
+      <TabItem label="Java">
+      
+        ```java title="Sup.java"
+        public static void main(String[] args){
+            System.out.println("Sup?");
+        }
+        ```
+
+      </TabItem>
+      <TabItem label="JavaScript">
+      
+        ```javascript title="sup.js"
+        console.log("You tell me what's up?");
+        ```
+      
+      </TabItem>
+      <TabItem label="COBOL">
+      
+        ```bash theme="terminal" title="Just Kidding"
+        $> echo 'I have no idea how to write in COBOL'
+        ```
+      
+      </TabItem>
+    </Tabs>
+  </li>
 </ol>
 
 </Steps>
@@ -96,6 +101,7 @@ For instance, we can drop complex component sets in here if we want to.
 * [x] Create a bespoke Blog system based on Astro content collections and giving authors ease of writing through MDX/Markdown 
 * [x] Integrate new Blog system with Starlight for consistent styling, LnF, and media controls with the rest of the site
 * [x] Hook in headers to right sidebar for in-page navigation
+* [x] Make a breadcrumb map on blog post pages
 * [ ] Create an `authors` content collection to act as the database for authors
 * [ ] Create an Authors component to show author info (image, social links, etc)
 * [ ] Make a left navbar specific to Blogs
