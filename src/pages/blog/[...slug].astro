@@ -23,7 +23,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post);
 console.log(post);
 ---
 
-<StarlightPage frontmatter={{ title: title }} headings={headings}>
+<StarlightPage frontmatter={{ title: title }} headings={headings} hasSidebar={false}>
 	<div class="text-sm not-content block-markdown-content">
 	  <a href={import.meta.env.BASE_URL + "/"}>
 		<HomeIcon />

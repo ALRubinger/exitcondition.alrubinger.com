@@ -12,6 +12,14 @@ const posts = (await getCollection("blog")).sort(
 //const tags = [...new Set(posts.map((post) => post.data.tags).flat())].sort();
 ---
 
-<StarlightPage frontmatter={{ title: 'Blog' }}>
+<StarlightPage frontmatter={{ title: 'Block Open Source Blog' , template: 'splash'}}>
+  <h2>Blogs</h2>
+  <div>
+    Yes, I know this page is completely featureless and unstyled, but 
+    I'm rather proud of the manual control alongside the Starlight system
+    styling, and that we can get dynamic data out of it to start to list 
+    out content collections and link to the set of blog posts. The individual 
+    blog post pages are further along at the moment.  - ALR
+  </div>
   <BlogPostIndex posts={posts}>
 </StarlightPage>
