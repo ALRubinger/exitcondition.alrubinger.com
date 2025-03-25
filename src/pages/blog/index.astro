@@ -1,0 +1,17 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from "astro:content";
+
+import BlogPostIndex from "../../components/blog/BlogPostIndex.astro";
+import { formDataToObject } from 'astro:actions';
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+//const tags = [...new Set(posts.map((post) => post.data.tags).flat())].sort();
+---
+
+<StarlightPage frontmatter={{ title: 'Blog' }}>
+  <BlogPostIndex posts={posts}>
+</StarlightPage>

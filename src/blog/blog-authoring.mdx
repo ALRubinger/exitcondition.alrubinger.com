@@ -1,0 +1,106 @@
+---
+title: Welcome to Blog Authoring
+pubDate: 2025-03-22T16:33:06.079Z
+snippet: "A short description of this test post"
+heroImage: /images/rebuilt2.png
+tags: ["react", "nextjs", "javascript", "netlify"]
+---
+
+import { Aside, FileTree, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Blog Posts are written in Markdown, and because it's a full MDX format, this supports all
+dynamic content available to Astro or any of the rest of the docs system as shown in the examples.
+For instance, we can drop complex component sets in here if we want to.
+
+## Multilanguage Code Example
+
+<Tabs>
+  <TabItem label="Java">
+  
+    ```java title="Sup.java"
+    public static void main(String[] args){
+        System.out.println("Sup?");
+    }
+    ```
+
+  </TabItem>
+  <TabItem label="JavaScript">
+  
+    ```javascript title="sup.js"
+    console.log("You tell me what's up?");
+    ```
+  
+  </TabItem>
+  <TabItem label="COBOL">
+  
+    ```bash theme="terminal" title="Just Kidding"
+    $> echo 'I have no idea how to write in COBOL'
+    ```
+  
+  </TabItem>
+</Tabs>
+
+## Writing a Blog Post
+
+<Aside>
+  This is a work in progress as we build out the blog system. - ALR
+</Aside>
+
+<Steps>
+<ol>
+  <li> 
+    Create a new `.mdx` file in `/src/blog`:
+    <FileTree>
+    - src
+      - blog
+        - my-post.mdx
+    </FileTree>
+
+    In this example, the URL of the blog post will be `http(s)://<$domain>/<$baseURL>/blog/my-post`. 
+    URL Routing is determined by the filename without the `.mdx` extension. So choose your filename 
+    with its target URL in mind.
+  </li>
+  <li>
+
+    At the top of the file you've just created, add 
+    "[frontmatter](https://docs.astro.build/en/basics/astro-components/)", a series of 
+    metadata wrapped in `---` above and below. For instance:
+
+    ```bash theme="terminal" title="/src/blog/my-post.mdx"
+
+    ---
+    title: Title of my blog post
+    pubDate: 2025-03-22
+    ---
+
+    ```
+
+    The following properties apply:
+
+    | Property  | Description and Notes                                                                                                                                                                                                                                                           |
+    |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | `title`   | The title of the blog post                                                                                                                                                                                                                                                      |
+    | `pubDate` | Date in [`ISO 8601`](https://www.iso.org/iso-8601-date-and-time-format.html) or short-form `YYYY-MM-DD` <br />format. The short form is acceptable because the formatting <br />the docs system uses will drop precision and only show the day<br /> and date of the post, leaving off the time.  |
+
+    <Aside>
+      This section on frontmatter properties will evolve as we build out the schema for blog posts. - ALR
+    </Aside>
+
+  </li>
+</ol>
+
+</Steps>
+
+## ALR TODOs
+
+* [x] Create a bespoke Blog system based on Astro content collections and giving authors ease of writing through MDX/Markdown 
+* [x] Integrate new Blog system with Starlight for consistent styling, LnF, and media controls with the rest of the site
+* [x] Hook in headers to right sidebar for in-page navigation
+* [ ] Create an `authors` content collection to act as the database for authors
+* [ ] Create an Authors component to show author info (image, social links, etc)
+* [ ] Make a left navbar specific to Blogs
+* [ ] Add a tagging system
+* [ ] Create a filter in the left navbar to filter based on tags
+* [ ] Fully Document how blog authors can use this thing
+* [ ] Make a better blogs index page to showcase latest post and list all others with short info
+* [ ] Profit

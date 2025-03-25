@@ -161,9 +161,9 @@
     /* Standard page text */
     p {
       font-family: var(--block-font-prose);
-      line-height: 1.5rem;
+      /*line-height: 1.5rem;
       margin-bottom: .5rem;
-      margin-top: .5rem;
+      margin-top: .5rem; */
     }
 
     /* Links */

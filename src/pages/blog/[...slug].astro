@@ -1,0 +1,23 @@
+---
+import { getCollection, render} from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { 
+			slug: post.id
+		},
+		props: post,
+	}));
+}
+
+const post = Astro.props;
+const title = post.data.title;
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+console.log(post);
+---
+
+<StarlightPage frontmatter={{ title: title }} headings={headings}>
+	<Content />
+</StarlightPage>
