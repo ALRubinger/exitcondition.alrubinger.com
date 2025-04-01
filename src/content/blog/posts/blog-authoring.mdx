@@ -1,5 +1,6 @@
 ---
 title: Welcome to Blog Authoring
+author: alrubinger
 pubDate: 2025-03-22T16:33:06.079Z
 snippet: "A short description of this test post"
 heroImage: /images/rebuilt2.png
@@ -18,12 +19,59 @@ This guide will walk you through writing a new blog post.
 
 <Steps>
 <ol>
-  <li> 
-    ### Create a new `.mdx` file in `/src/blog`
+  <li>
+    ### Add Yourself as an Author
+
+    <Aside type="note">
+      This only needs to be done once, before your first post.
+    </Aside>
+
+    Open `src/content/blog/authors.json` in a file editor.
+
     <FileTree>
     - src
-      - blog
-        - my-post.mdx
+      - content 
+        - blog
+          - authors.json
+    </FileTree>
+
+    Add an entry for yourself, following the format:
+    
+    ```javascript
+      {
+        "alrubinger" : {
+          "name": "Andrew Lee Rubinger",
+          "title": "Lead, Open Source Program Office, Block",
+          "social-github": "ALRubinger",
+          "social-linkedin": "alrubinger",
+          "social-x": "ALRubinger"
+        }
+        ...more
+      }
+    ```
+
+    This is the schema:
+
+    | Property  | Description and Notes                                                                                                                                                                                                                                                           
+    |-----------|-----------------------|
+    | `id` | Unique ID for you; this is what you'll put in the metadata of your blog entries when you write an post. |
+    | `author` | The the key of the author in `./src/content/blog/authors.yaml` - defines who wrote the post |
+    | `title` | Your job title. What would you say...you *do* here? |
+    | `social-github` | Your GitHub username |
+    | `social-LinkedIn` | Your LinkedIn username |
+    | `social-x` | Your X, formerly Twitter, username |
+
+  </li>
+  <li> 
+    ### Make a File for your Blog Post
+
+    Create a new `.mdx` file in `/src/content/blog/posts`:
+    <FileTree>
+    - src
+      - content 
+        - blog
+          - posts
+            - my-post.mdx
     </FileTree>
 
     In this example, the URL of the blog post will be `http(s)://<$domain>/<$baseURL>/blog/my-post`. 
@@ -42,6 +90,7 @@ This guide will walk you through writing a new blog post.
 
     ---
     title: Title of my blog post
+    author: alrubinger
     pubDate: 2025-03-22
     ---
 
@@ -52,6 +101,7 @@ This guide will walk you through writing a new blog post.
     | Property  | Description and Notes                                                                                                                                                                                                                                                           |
     |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | `title`   | The title of the blog post                                                                                                                                                                                                                                                      |
+    | `author`  | The the key of the author in `./src/content/blog/authors.yaml` - defines who wrote the post                                                                                                                                                                                     |
     | `pubDate` | Date in [`ISO 8601`](https://www.iso.org/iso-8601-date-and-time-format.html) or short-form `YYYY-MM-DD` <br />format. The short form is acceptable because the formatting <br />the docs system uses will drop precision and only show the day<br /> and date of the post, leaving off the time.  |
 
     <Aside>
@@ -60,7 +110,7 @@ This guide will walk you through writing a new blog post.
 
   </li>
   <li>
-    ### Write your post
+    ### Write your Post
 
     Blog Posts are written in Markdown, and because it's a full MDX format, this supports all
     dynamic content available to Astro or any of the rest of the docs system as shown in the examples.
@@ -102,8 +152,12 @@ This guide will walk you through writing a new blog post.
 * [x] Integrate new Blog system with Starlight for consistent styling, LnF, and media controls with the rest of the site
 * [x] Hook in headers to right sidebar for in-page navigation
 * [x] Make a breadcrumb map on blog post pages
-* [ ] Create an `authors` content collection to act as the database for authors
-* [ ] Create an Authors component to show author info (image, social links, etc)
+* [x] Create an `authors` content collection to act as the database for authors
+* [x] Create an Author component to show author info (image, social links, etc)
+* [ ] Support images in the author component
+* [ ] Link blog posts to authors (there's a TODO for this so we search the collection)
+* [ ] Make some Author content properties optional and hidden from the UI if so
+* [ ] Style pass on the Author component
 * [ ] Make a left navbar specific to Blogs
 * [ ] Add a tagging system
 * [ ] Create a filter in the left navbar to filter based on tags

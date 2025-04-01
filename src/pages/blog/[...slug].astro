@@ -5,7 +5,11 @@ import { Card } from '@astrojs/starlight/components';
 import { formatDate } from '../../components/blog/blogUtils.ts';
 import BlogHomeIcon from './assets/_newspaper.svg'
 import HomeIcon from './assets/_home.svg'
+import AuthorCard from '../../components/blog/AuthorCard.astro';
 
+/**
+ * Required function for dynamic routes; deteremines the slug
+ */
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
@@ -16,11 +20,19 @@ export async function getStaticPaths() {
 	}));
 }
 
+/**
+ * Get Author Data
+ */
+const authors = await getCollection('authors');
+const author = authors.at(0); //TODO Replace with a find function 
+
+/**
+ * Properties used on this page
+ */
 const post = Astro.props;
 const title = post.data.title;
 const date = formatDate(post.data.pubDate);
 const { Content, headings, remarkPluginFrontmatter } = await render(post);
-console.log(post);
 ---
 
 <StarlightPage frontmatter={{ title: title }} headings={headings} hasSidebar={false}>
@@ -32,15 +44,10 @@ console.log(post);
 	  <a href={import.meta.env.BASE_URL + "/blog/"}>
 		<BlogHomeIcon />
 		<span>Blogs</span>
-      </a>&nbsp;&gt;
-	  <a href={import.meta.env.BASE_URL + "/blog/" + post.id}>
-        {post.data.title}
-	  </a>
+      </a>&nbsp;&gt;&nbsp;{post.data.title}
 	</div>
 	<Card title="Blog Header Image will go here" />
-	<Card title="Author Component will go here">
-		<div><i>{ date }</i></div>
-	</Card>
+	<AuthorCard author={author} date={date}/>
 	<Content />
 </StarlightPage>
 

@@ -1,0 +1,14 @@
+---
+import { Card } from '@astrojs/starlight/components';
+
+const { author, date } = Astro.props;
+console.log(author);
+---
+
+<Card title={ author.data.name }>
+  <div><i>{ author.data.title }</i></div>
+  <div><i>{ date }</i></div>
+  <div>GitHub: {author.data['social-github']}</div>
+  <div>LinkedIn: {author.data['social-linkedin']}</div>
+  <div>X: {author.data['social-x']}</div>
+</Card>

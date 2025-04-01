@@ -2,17 +2,7 @@
 import { Steps } from '@astrojs/starlight/components';
 import  { formatDate } from './blogUtils.ts';
 
-interface PostSectionProps {
-  posts: any[];
-  tags: any[];
-}
-
-const PostSection = (props: PostSectionProps) => {
-    const { posts, tags } = props;
-    }
-
 const { posts } = Astro.props;
-console.log(posts);
 ---
 
 <section>
