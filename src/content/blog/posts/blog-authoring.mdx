@@ -13,18 +13,33 @@ This guide will walk you through writing a new blog post.
 
 ## Writing a Blog Post
 
-<Aside>
+<Aside type="caution">
   This is a work in progress as we build out the blog system. - ALR
 </Aside>
 
 <Steps>
 <ol>
   <li>
+
     ### Add Yourself as an Author
 
     <Aside type="note">
       This only needs to be done once, before your first post.
     </Aside>
+
+    #### Add Your Avatar
+
+    Find a great headshot or other picture you'd like to use as your avatar. Put it in `src/assets/blog/avatars`:
+    
+    <FileTree>
+    - src
+      - assets 
+        - blog
+          - avatars
+            - alrubinger.jpg
+    </FileTree>
+
+    #### Add Author Metadata
 
     Open `src/content/blog/authors.json` in a file editor.
 
@@ -44,7 +59,8 @@ This guide will walk you through writing a new blog post.
           "title": "Lead, Open Source Program Office, Block",
           "social-github": "ALRubinger",
           "social-linkedin": "alrubinger",
-          "social-x": "ALRubinger"
+          "social-x": "ALRubinger",
+          "avatar" : "alrubinger.jpg"
         }
         ...more
       }
@@ -60,6 +76,7 @@ This guide will walk you through writing a new blog post.
     | `social-github` | Your GitHub username |
     | `social-LinkedIn` | Your LinkedIn username |
     | `social-x` | Your X, formerly Twitter, username |
+    | `avatar` | Location of your avatar image within `src/assets/blog/avatars`; accepts any file format `.jpg`, `.jpeg`, `.png`, or `.gif`. |
 
   </li>
   <li> 
@@ -154,8 +171,8 @@ This guide will walk you through writing a new blog post.
 * [x] Make a breadcrumb map on blog post pages
 * [x] Create an `authors` content collection to act as the database for authors
 * [x] Create an Author component to show author info (image, social links, etc)
-* [ ] Support images in the author component
-* [ ] Link blog posts to authors (there's a TODO for this so we search the collection)
+* [x] Support images in the author component
+* [x] Link blog posts to authors
 * [ ] Make some Author content properties optional and hidden from the UI if so
 * [ ] Style pass on the Author component
 * [ ] Make a left navbar specific to Blogs

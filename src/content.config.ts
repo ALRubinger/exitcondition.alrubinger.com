@@ -24,5 +24,6 @@ export const collections = {
       'social-github': z.string(),
       'social-linkedin': z.string(),
       'social-x': z.string(),
+      avatar: z.string(),
     })}),
 };
