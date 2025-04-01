@@ -8,7 +8,7 @@ export const collections = {
   docs: defineCollection({ loader: docsLoader(), schema: docsSchema() }),
   // Our Blog Implementation is an Astro Content Collection
   blog: defineCollection({
-    loader: glob({ pattern: "**/*.mdx", base: "./src/blog" }),
+    loader: glob({ pattern: "**/*.mdx", base: "./src/content/blog" }),
     schema: z.object({
       title: z.string(),
       pubDate: z.coerce.date(),
