@@ -3,8 +3,8 @@ import { getCollection, render} from 'astro:content';
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { Card } from '@astrojs/starlight/components';
 import { formatDate } from '../../components/blog/blogUtils.ts';
-import BlogHomeIcon from './assets/newspaper.svg'
-import HomeIcon from './assets/home.svg'
+import BlogHomeIcon from './assets/_newspaper.svg'
+import HomeIcon from './assets/_home.svg'
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
