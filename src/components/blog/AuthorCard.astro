@@ -15,7 +15,7 @@ if (!images[avatarPath]) throw new Error(`"${avatarPath}" does not exist`);
   <div class="flex-none p-4"><Image src={images[avatarPath]()} alt={author.data.name} width={200} class="rounded-full border"/></div>
   <div class="flex-100 size-full">
     <div class="size-full">
-      <h4>{ author.data.name }</h4>
+      <h4>{ author.data.name }</h4>published on <i>{date}</i>
       <h6>{ author.data.title }</h6>
     </div>
     <div class="flex h-8">
