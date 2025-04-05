@@ -8,13 +8,20 @@ import DocumentationLayout from '../layouts/DocumentationLayout.astro';
 ---
 
 <DocumentationLayout>
+  <div class="block-page-content">
     <div class="p-4">
-        <div class="font-red-hat-mono text-sm">Red Hat Mono: public static void main(String[] args){}</div>
-        <div class="font-courier-prime text-sm">Courier Prime: public static void main(String[] args){}</div>
-        <div class="font-outfit text-6xl pt-6 pb-3">Nice big statement piece.</div>
-        <div class="font-montserrat text-sm">Montserrat: Standard legible text parts here.</div>
-        <div class="font-outfit text-6xl pt-6 pb-3">Nice big statement piece.</div>
-        <div class="font-libre-franklin text-sm">Libre Franklin: Standard legible text parts here.</div>
+        <div class="text-sm font-mono">Monospace: public static void main(String[] args){}</div>
+        <div class="text-sm font-prose">Libre Franklin: Standard legible text parts here</div>
+        <div class="text-2xl font-header">Montserrat: Used for headers.</div>
     </div>
+
+    <div class="flex bg-yellow-100 h-8">
+      <div class="flex-none size-8 bg-green-200 p-2">a</div>
+      <div class="flex-none size-8 bg-yellow-200 p-2">b</div>
+      <div class="flex-none size-8 bg-green-800 p-2">c</a></div>
+      <div class="flex-1 bg-blue-200 p-2">d</div>
+    </div>
+  </div>
+
     <Feature />
 </DocumentationLayout>

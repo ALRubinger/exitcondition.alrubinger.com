@@ -98,6 +98,7 @@
   /* Fonts; make sure these are included in src/components/starlight/Head.astro. or they won't render */ 
   --sl-font: var(--block-font-prose);
   --sl-font-mono: var(--block-font-monospace);
+  --font-monospace: var(--block-font-monospace); /* This is used in code rendering not Starlight directly)
 
   /*
    * Starlight color properties. 
@@ -120,6 +121,17 @@
   --sl-color-black: var(--block-color-contrast-lowest);
 
  }
+
+/**
+ * Tailwind Customizations to the theme
+ * 
+ * These will be available as classes
+ */
+@theme {
+  --font-mono: var(--block-font-monospace);
+  --font-prose: var(--block-font-prose);
+  --font-header: var(--block-font-header);
+}
 
 
 :root {
