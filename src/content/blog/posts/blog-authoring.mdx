@@ -113,13 +113,51 @@ This guide will walk you through writing a new blog post.
 
     ```
 
-    The following properties apply:
+    The following properties apply, and they are defined in `/src/content/config.ts`:
 
-    | Property  | Description and Notes                                                                                                                                                                                                                                                           |
-    |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | `title`   | The title of the blog post                                                                                                                                                                                                                                                      |
-    | `author`  | The the key of the author in `./src/content/blog/authors.yaml` - defines who wrote the post                                                                                                                                                                                     |
-    | `pubDate` | Date in [`ISO 8601`](https://www.iso.org/iso-8601-date-and-time-format.html) or short-form `YYYY-MM-DD` <br />format. The short form is acceptable because the formatting <br />the docs system uses will drop precision and only show the day<br /> and date of the post, leaving off the time.  |
+    {/* This table in HTML rather than Markdown so we have control over wrapping */}
+    <table>
+      <thead>
+        <tr>
+          <th class="whitespace-nowrap">Property</th>
+          <th class="whitespace-nowrap">Required</th>
+          <th class="whitespace-nowrap">Description and Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="whitespace-nowrap"><code>title</code></td>
+          <td>✅</td>
+          <td>The title of the blog post.</td>
+        </tr>
+        <tr>
+          <td class="whitespace-nowrap"><code>author</code></td>
+          <td>✅</td>
+          <td>The key of the author in <code>./src/content/blog/authors.json</code> – defines who wrote the post.</td>
+        </tr>
+        <tr>
+          <td class="whitespace-nowrap"><code>pubDate</code></td>
+          <td>✅</td>
+          <td>Date in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a> or short-form <code>YYYY-MM-DD</code> format. The short form is acceptable because the formatting the docs system uses will drop precision and only show the day and date of the post, leaving off the time.</td>
+        </tr>
+        <tr>
+          <td class="whitespace-nowrap"><code>snippet</code></td>
+          <td></td>
+          <td>A short summary or description of the post, shown in blog indexes. If not provided, an excerpt from the body will be used.</td>
+        </tr>
+        <tr>
+          <td class="whitespace-nowrap"><code>heroImage</code></td>
+          <td></td>
+          <td>Path to a hero image for the post, e.g. <code>/blog/[authorName]/my-image.png</code>. This file should be located in <code>/public/blog/[authorName]</code>.</td>
+        </tr>
+        <tr>
+          <td class="whitespace-nowrap"><code>tags</code></td>
+          <td></td>
+          <td>An array of tags for the post, e.g. <code>["react", "nextjs"]</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+
 
     <Aside>
       This section on frontmatter properties will evolve as we build out the schema for blog posts. - ALR
