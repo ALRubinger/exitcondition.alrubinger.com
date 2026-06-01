@@ -1,0 +1,105 @@
+---
+import Sidebar from '../components/Sidebar.svelte';
+import { listPosts } from '../lib/posts';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const posts = await listPosts();
+const sidebarPosts = posts.map((p) => ({
+  slug: p.slug,
+  href: p.href,
+  title: p.title,
+  date: p.date.toISOString(),
+}));
+
+const pageTitle = title === 'exitcondition' ? 'exitcondition' : `${title} — exitcondition`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
+    <link rel="stylesheet" href="https://use.typekit.net/par8udz.css" />
+  </head>
+  <body>
+    <header class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center pl-16 pr-6 lg:px-6 border-b border-border bg-background transition-[padding] duration-200">
+      <a href="/" class="font-extrabold text-2xl lg:text-3xl text-foreground no-underline hover:text-foreground">
+        exitcondition
+      </a>
+      <span class="hidden sm:inline font-normal text-sm lg:text-base text-muted-foreground ml-3">
+        Andrew Lee Rubinger
+      </span>
+    </header>
+    <div class="flex min-h-screen pt-16">
+      <Sidebar currentPath={currentPath} posts={sidebarPosts} client:load />
+
+      <!-- min-w-0 keeps long <pre> lines from widening this flex column past
+           the viewport; each <pre> scrolls horizontally on its own. -->
+      <div class="flex-1 min-w-0">
+        <slot />
+      </div>
+    </div>
+    <script is:inline>
+      // Page-background parallax. Shifts background-position-y at half the
+      // scroll rate so the textured page bg appears to scroll at 50% the
+      // speed of content. RAF-throttled; passive listener.
+      (function () {
+        let ticking = false;
+        const update = () => {
+          document.body.style.backgroundPositionY = `${window.scrollY * 0.5}px`;
+          ticking = false;
+        };
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (!ticking) {
+              ticking = true;
+              requestAnimationFrame(update);
+            }
+          },
+          { passive: true },
+        );
+        update();
+      })();
+    </script>
+    <script>
+      // Wire up code-block copy buttons emitted by rehype-copy-button.mjs.
+      (function () {
+        const RESET_MS = 1500;
+        document.addEventListener('click', async (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          const btn = target.closest('button.code-copy-button');
+          if (!btn) return;
+          const wrapper = btn.closest('.code-block-wrapper');
+          if (!wrapper) return;
+          const pre = wrapper.querySelector('pre');
+          if (!pre) return;
+          try {
+            await navigator.clipboard.writeText(pre.textContent ?? '');
+            btn.classList.add('is-copied');
+            btn.setAttribute('aria-label', 'Code copied');
+          } catch {
+            btn.setAttribute('aria-label', 'Copy failed');
+          }
+          setTimeout(() => {
+            btn.classList.remove('is-copied');
+            btn.setAttribute('aria-label', 'Copy code to clipboard');
+          }, RESET_MS);
+        });
+      })();
+    </script>
+  </body>
+</html>

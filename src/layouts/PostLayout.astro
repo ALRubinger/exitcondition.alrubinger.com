@@ -1,0 +1,36 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.svelte';
+import { formatDate } from '../lib/posts';
+
+interface Props {
+  title: string;
+  description?: string;
+  date: Date;
+  headings?: { slug: string; text: string; depth: number }[];
+}
+
+const { title, description, date, headings = [] } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="px-6 pt-8 pb-8 lg:px-10 flex flex-col">
+    <div class="flex gap-8">
+      <div class="flex-1 min-w-0">
+        <article class="prose">
+          <h1>{title}</h1>
+          <p class="meta text-sm text-muted-foreground -mt-4 mb-8">
+            <time datetime={date.toISOString()}>{formatDate(date)}</time>
+          </p>
+          <slot />
+        </article>
+      </div>
+
+      <aside class="toc-aside">
+        <div class="sticky top-20 max-h-[calc(100vh-5rem)] overflow-y-auto pr-4 -mr-4 pb-4">
+          <TableOfContents headings={headings} client:load />
+        </div>
+      </aside>
+    </div>
+  </main>
+</BaseLayout>
