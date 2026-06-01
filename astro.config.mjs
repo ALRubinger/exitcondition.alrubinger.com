@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import { unified } from '@astrojs/markdown-remark';
 import svelte from '@astrojs/svelte';
 import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
@@ -10,25 +11,27 @@ import { fileURLToPath } from 'node:url';
 export default defineConfig({
   site: 'https://exitcondition.alrubinger.com',
   integrations: [mdx(), svelte()],
-  unified: {
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['noopener', 'noreferrer'],
-          content: { type: 'text', value: ' ↗' },
-          test: (element) => {
-            const c = element.properties?.className;
-            if (!c) return true;
-            const list = Array.isArray(c) ? c : String(c).split(/\s+/);
-            return !list.includes('no-arrow');
+  markdown: {
+    processor: unified({
+      rehypePlugins: [
+        [
+          rehypeExternalLinks,
+          {
+            target: '_blank',
+            rel: ['noopener', 'noreferrer'],
+            content: { type: 'text', value: ' ↗' },
+            test: (element) => {
+              const c = element.properties?.className;
+              if (!c) return true;
+              const list = Array.isArray(c) ? c : String(c).split(/\s+/);
+              return !list.includes('no-arrow');
+            },
           },
-        },
+        ],
+        rehypeCopyButton,
+        rehypeSectionWrapper,
       ],
-      rehypeCopyButton,
-      rehypeSectionWrapper,
-    ],
+    }),
   },
   vite: {
     resolve: {
