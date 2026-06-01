@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
 import SectionBreak from '../../lib/components/section-break.astro';
 import SectionResume from '../../lib/components/section-resume.astro';
@@ -17,6 +17,15 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
+const author = entry.data.author
+  ? await getEntry('authors', entry.data.author)
+  : undefined;
+if (entry.data.author && !author) {
+  throw new Error(
+    `Post "${entry.id}" references unknown author "${entry.data.author}"`,
+  );
+}
+
 // SectionBreak / SectionResume are markers consumed by the
 // rehype-section-wrapper plugin. They render nothing themselves but
 // must be in scope for MDX so authors can use them without an
@@ -28,6 +37,7 @@ const components = { SectionBreak, SectionResume };
   title={entry.data.title}
   description={entry.data.description}
   date={entry.data.date}
+  author={author}
   headings={headings}
 >
   <Content components={components} />
