@@ -1,0 +1,43 @@
+---
+title: Hello, world
+description: A fresh start, on a fresh stack.
+date: 2026-06-01
+---
+
+This is the first post on **exitcondition** — my personal blog, rebuilt from
+scratch on the same stack that runs the Aileron documentation site: Astro 6,
+Svelte 5, and Tailwind v4, with the shared design tokens that drive the rest
+of the family of sites.
+
+## Why "exitcondition"
+
+In programming, an *exit condition* is the rule that decides when a loop
+stops. Every loop needs one. So does every project, every career chapter,
+and every late-night thought.
+
+This blog is where I'll write about the ones I've crossed, the ones I'm
+chasing, and the ones I haven't quite figured out yet.
+
+## What you'll find here
+
+A few topics I expect to circle back to:
+
+- Open source and the long tail of running a project past launch
+- Financial technology — what makes the boring parts actually hard
+- The shape of an engineering career, told without the brochure voice
+- Notes from the workbench: tools, patterns, and the occasional dead end
+
+## Colophon
+
+The site is built on Astro with content authored in MDX, styled with
+Tailwind v4 against a token system shared with the Aileron documentation
+stack. The left sidebar lists every post grouped by year. The textured
+page background is a generated SVG tile, parallax-scrolled at half rate.
+
+```ts
+// posts are loaded from src/content/posts/**/*.mdx
+// and listed by date descending in the sidebar.
+const posts = await listPosts();
+```
+
+There's not much here yet. That's the point of a first post.

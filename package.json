@@ -1,36 +1,29 @@
 {
   "name": "exitcondition.alrubinger.com",
-  "version": "25.01.27",
-  "description": "Break out thoughts from the open source guy in financial tech",
-  "author": {
-    "name": "Andrew Lee Rubinger"
-  },
+  "version": "0.1.0",
+  "private": true,
+  "description": "exitcondition — Andrew Lee Rubinger's personal blog",
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "check": "astro check"
   },
   "dependencies": {
-    "@astrojs/mdx": "4.3.7",
-    "@astrojs/react": "^4.4.0",
-    "@expressive-code/plugin-collapsible-sections": "^0.40.2",
-    "@expressive-code/plugin-line-numbers": "^0.40.2",
-    "@tailwindcss/vite": "^4.1.14",
-    "astro": "5.14.3",
-    "astro-d2": "^0.7.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "sharp": "^0.34.4",
-    "tailwindcss": "^4.1.14",
-    "tailwindcss-animate": "^1.0.7"
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/svelte": "^8.0.5",
+    "@lucide/svelte": "^1.16.0",
+    "astro": "^6.1.6",
+    "rehype-external-links": "^3.0.0",
+    "svelte": "^5.55.4",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
-    "rehype-autolink-headings": "^7.1.0",
-    "rehype-slug": "^6.0.0",
-    "remark-gfm": "^4.0.1"
+    "@astrojs/check": "^0.9.8",
+    "@tailwindcss/vite": "^4.2.2",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.0"
   },
   "packageManager": "pnpm@10.11.1"
 }

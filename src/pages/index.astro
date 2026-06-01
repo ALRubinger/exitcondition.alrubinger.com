@@ -1,11 +1,47 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { listPosts, formatDate } from '../lib/posts';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts = await listPosts();
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="exitcondition" description="Andrew Lee Rubinger's personal blog">
+  <main class="px-6 pt-8 pb-8 lg:px-10 flex flex-col">
+    <div class="flex gap-8">
+      <div class="flex-1 min-w-0">
+        <article class="prose">
+          <h1>exitcondition</h1>
+          <p class="lead text-muted-foreground -mt-4 mb-10 text-lg">
+            Notes from Andrew Lee Rubinger on systems, software, and the
+            occasional escape from a loop.
+          </p>
+
+          {posts.length === 0 ? (
+            <section class="prose-section ink-bleed">
+              <h2>No posts yet</h2>
+              <p>Check back soon.</p>
+            </section>
+          ) : (
+            <ul class="not-prose list-none p-0 m-0 flex flex-col gap-6">
+              {posts.map((post) => (
+                <li class="rounded-lg border border-border bg-card shadow-low p-6">
+                  <a href={post.href} class="no-underline group block">
+                    <h2 class="text-2xl font-extrabold text-foreground mb-2 group-hover:underline">
+                      {post.title}
+                    </h2>
+                    <p class="text-sm text-muted-foreground mb-3">
+                      <time datetime={post.date.toISOString()}>{formatDate(post.date)}</time>
+                    </p>
+                    {post.description && (
+                      <p class="text-foreground/80 m-0">{post.description}</p>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </article>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

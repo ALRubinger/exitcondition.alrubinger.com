@@ -1,53 +1,42 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
-
-import astroD2 from 'astro-d2'
-import react from '@astrojs/react';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import remarkGfm from 'remark-gfm';
-import rehypeSlug from 'rehype-slug';
+import svelte from '@astrojs/svelte';
 import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
+import rehypeExternalLinks from 'rehype-external-links';
+import rehypeCopyButton from './src/lib/rehype-copy-button.mjs';
+import rehypeSectionWrapper from './src/lib/rehype-section-wrapper.mjs';
+import { fileURLToPath } from 'node:url';
 
-// https://astro.build/config
 export default defineConfig({
-  site: 'https://alrubinger.github.io',
-  base: '/exitcondition.alrubinger.com',
-
-  integrations: [
-    // Enable React support for TSX/JSX components used in MDXComponents
-    react(),
-    mdx({
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
-      //extendDefaultPlugins: true
-    }),
-  // https://astro-d2.vercel.app/configuration/#configuration-options
-  astroD2({
-    theme: {
-      default: '8',
-      dark: '200',
-    },
-  })],
-  markdown: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
-    shikiConfig: {
-      themes: {
-        light: 'github-light',
-        dark: 'github-dark'
-      },
-      wrap: true,
-      // Remove default theme application
-      defaultColor: 'light'
-    }
+  site: 'https://exitcondition.alrubinger.com',
+  integrations: [mdx(), svelte()],
+  unified: {
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['noopener', 'noreferrer'],
+          content: { type: 'text', value: ' ↗' },
+          test: (element) => {
+            const c = element.properties?.className;
+            if (!c) return true;
+            const list = Array.isArray(c) ? c : String(c).split(/\s+/);
+            return !list.includes('no-arrow');
+          },
+        },
+      ],
+      rehypeCopyButton,
+      rehypeSectionWrapper,
+    ],
   },
   vite: {
-    plugins: [tailwindcss()],
     resolve: {
       alias: {
-        "@": "/src",
+        $lib: fileURLToPath(new URL('./src/lib', import.meta.url)),
       },
     },
+    plugins: [tailwindcss()],
   },
+  output: 'static',
 });
