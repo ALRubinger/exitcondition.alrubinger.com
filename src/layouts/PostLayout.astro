@@ -1,16 +1,19 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import TableOfContents from '../components/TableOfContents.svelte';
+import AuthorCard from '../components/blog/AuthorCard.astro';
 import { formatDate } from '../lib/posts';
 
 interface Props {
   title: string;
   description?: string;
   date: Date;
+  author?: CollectionEntry<'authors'>;
   headings?: { slug: string; text: string; depth: number }[];
 }
 
-const { title, description, date, headings = [] } = Astro.props;
+const { title, description, date, author, headings = [] } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -22,6 +25,11 @@ const { title, description, date, headings = [] } = Astro.props;
           <p class="meta text-sm text-muted-foreground -mt-4 mb-8">
             <time datetime={date.toISOString()}>{formatDate(date)}</time>
           </p>
+          {author && (
+            <div class="not-prose mb-10">
+              <AuthorCard author={author} />
+            </div>
+          )}
           <slot />
         </article>
       </div>

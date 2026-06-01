@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const posts = defineCollection({
@@ -9,7 +9,20 @@ const posts = defineCollection({
     description: z.string().optional(),
     date: z.coerce.date(),
     draft: z.boolean().default(false),
+    author: z.string().optional(),
   }),
 });
 
-export const collections = { posts };
+const authors = defineCollection({
+  loader: file('./src/content/blog/authors.json'),
+  schema: z.object({
+    name: z.string(),
+    title: z.string(),
+    'social-github': z.string().optional(),
+    'social-linkedin': z.string().optional(),
+    'social-x': z.string().optional(),
+    avatar: z.string(),
+  }),
+});
+
+export const collections = { posts, authors };
