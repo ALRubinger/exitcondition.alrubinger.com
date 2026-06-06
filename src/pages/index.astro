@@ -1,8 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { listPosts, formatDate } from '../lib/posts';
-
-const posts = await listPosts();
+import Signature from '@/components/Signature.astro';
 ---
 
 <BaseLayout title="exitcondition" description="Andrew Lee Rubinger's personal blog">
@@ -10,36 +8,32 @@ const posts = await listPosts();
     <div class="flex gap-8">
       <div class="flex-1 min-w-0">
         <article class="prose">
-          <h1>exitcondition</h1>
-          <p class="lead text-muted-foreground -mt-4 mb-10 text-lg">
-            Notes from Andrew Lee Rubinger on systems, software, and the
-            occasional escape from a loop.
+          <h1>Hi. I'm ALR.</h1>
+          <p class="lead text-lg">
+            And I think software should meet us where we're at. Simple to share. Yours to improve. And friendlier than a blinking cursor in an empty chatbot.
           </p>
+          <div class="not-prose my-10 relative" aria-hidden="true">
+            <input
+              type="text"
+              value=""
+              readonly
+              tabindex="-1"
+              class="w-full rounded-md border border-border bg-card text-foreground text-lg lg:text-xl px-5 py-4 pointer-events-none focus:outline-none select-none caret-transparent"
+            />
+            <span class="cursor-blink absolute left-5 top-1/2 -translate-y-1/2 w-[2px] h-7 bg-foreground"></span>
+          </div>
+          <p class="lead mt-0 mb-10 text-lg">
+            So I'm building Aileron, a prototype that erases the tech. When it's ready, it'll be a simple place to automate the routines you do every day. On your real systems. 
+          </p>
+          <p class="lead mt-4 mb-10 text-lg">
+            Designed for collaboration. Hardened with privacy and security. Built for real work.
+          </p>
+          <p class="lead mt-4 mb-10 text-lg">
+            Though the work is messy, the result deserves care. These are my thoughts as we fumble through it.
 
-          {posts.length === 0 ? (
-            <section class="prose-section ink-bleed">
-              <h2>No posts yet</h2>
-              <p>Check back soon.</p>
-            </section>
-          ) : (
-            <ul class="not-prose list-none p-0 m-0 flex flex-col gap-6">
-              {posts.map((post) => (
-                <li class="rounded-lg border border-border bg-card shadow-low p-6">
-                  <a href={post.href} class="no-underline group block">
-                    <h2 class="text-2xl font-extrabold text-foreground mb-2 group-hover:underline">
-                      {post.title}
-                    </h2>
-                    <p class="text-sm text-muted-foreground mb-3">
-                      <time datetime={post.date.toISOString()}>{formatDate(post.date)}</time>
-                    </p>
-                    {post.description && (
-                      <p class="text-foreground/80 m-0">{post.description}</p>
-                    )}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
+
+            <Signature />
+          </p>
         </article>
       </div>
     </div>

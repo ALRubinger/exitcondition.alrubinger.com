@@ -3,6 +3,7 @@ import { getCollection, getEntry, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
 import SectionBreak from '../../lib/components/section-break.astro';
 import SectionResume from '../../lib/components/section-resume.astro';
+import Signature from '../../components/Signature.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) =>
@@ -30,7 +31,7 @@ if (entry.data.author && !author) {
 // rehype-section-wrapper plugin. They render nothing themselves but
 // must be in scope for MDX so authors can use them without an
 // explicit import in every file.
-const components = { SectionBreak, SectionResume };
+const components = { SectionBreak, SectionResume, Signature };
 ---
 
 <PostLayout
