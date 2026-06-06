@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import FileText from '@lucide/svelte/icons/file-text';
+  import Calendar from '@lucide/svelte/icons/calendar';
 
   type PostEntry = {
     slug: string;
@@ -104,5 +105,18 @@
         <div class="text-sm text-muted-foreground px-2">No posts yet.</div>
       {/if}
     </nav>
+
+    <!-- Book-a-call CTA: opens the Google Calendar appointment page directly,
+         styled to fit the site theme rather than the default Google embed. -->
+    <a
+      href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0due3tfhNZobPoGzpCoUnKo3rLe5C0K_BnAWbLf41Kv7ZoK4UeweVCll-eRHBNu9GWzjT3d8re?gv=true"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="shrink-0 mt-4 flex items-center gap-2 py-2.5 px-3 rounded-md border border-border bg-primary text-primary-foreground text-sm font-medium no-underline shadow-low hover:opacity-90 transition-opacity"
+      onclick={() => (mobileOpen = false)}
+    >
+      <Calendar size={16} class="shrink-0" />
+      Tell me about your team
+    </a>
   </div>
 </aside>
