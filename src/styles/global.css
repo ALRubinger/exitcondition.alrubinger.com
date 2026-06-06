@@ -266,24 +266,26 @@
 	from { height: var(--bits-accordion-content-height); opacity: 1; }
 	to { height: 0; opacity: 0; }
 }
-/* GitHub icon shake animation (ported from itshover's animated GitHub icon).
+/* Icon shake animation (ported from itshover's animated GitHub icon).
  * On hover of the link wrapper, the inner <g> shakes with a combined
  * scale-pulse and rotation wiggle over 500ms. transform-box: fill-box
  * pins the rotation origin to the group's bounding box center so the
  * icon rotates around itself rather than the SVG origin. */
-@keyframes github-icon-shake {
+@keyframes icon-shake {
 	0%   { transform: scale(1)    rotate(0deg); }
 	25%  { transform: scale(1.08) rotate(-5deg); }
 	50%  { transform: scale(1.1)  rotate(0deg); }
 	75%  { transform: scale(1.08) rotate(5deg); }
 	100% { transform: scale(1)    rotate(0deg); }
 }
-.github-icon-link .github-icon-inner {
+.github-icon-link .github-icon-inner,
+.linkedin-icon-link .linkedin-icon-inner {
 	transform-box: fill-box;
 	transform-origin: center;
 }
-.github-icon-link:hover .github-icon-inner {
-	animation: github-icon-shake 500ms ease-in-out;
+.github-icon-link:hover .github-icon-inner,
+.linkedin-icon-link:hover .linkedin-icon-inner {
+	animation: icon-shake 500ms ease-in-out;
 }
 
 .cn-accordion-content[data-state="open"] {
@@ -291,4 +293,16 @@
 }
 .cn-accordion-content[data-state="closed"] {
 	animation: accordion-up 250ms ease-out forwards;
+}
+
+/* Blinking caret for the decorative chatbot-input illustration on the
+ * index page. The input itself has pointer-events: none — this fake
+ * caret is what gives the empty box its life. Hard on/off (no fade)
+ * to read as a terminal/chatbot cursor rather than a smooth animation. */
+@keyframes cursor-blink {
+	0%, 49.9% { opacity: 1; }
+	50%, 100% { opacity: 0; }
+}
+.cursor-blink {
+	animation: cursor-blink 1.1s infinite;
 }

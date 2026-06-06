@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const { title, description } = Astro.props.frontmatter ?? Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="px-6 pt-8 pb-8 lg:px-10 flex flex-col">
+    <div class="flex gap-8">
+      <div class="flex-1 min-w-0">
+        <article class="prose">
+          <slot />
+        </article>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

@@ -1,21 +1,16 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { listPosts, formatDate } from '../lib/posts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { listPosts, formatDate } from '../../lib/posts';
 
 const posts = await listPosts();
 ---
 
-<BaseLayout title="exitcondition" description="Andrew Lee Rubinger's personal blog">
+<BaseLayout title="Posts" description="All posts on exitcondition">
   <main class="px-6 pt-8 pb-8 lg:px-10 flex flex-col">
     <div class="flex gap-8">
       <div class="flex-1 min-w-0">
         <article class="prose">
-          <h1>exitcondition</h1>
-          <p class="lead text-muted-foreground -mt-4 mb-10 text-lg">
-            Notes from Andrew Lee Rubinger on systems, software, and the
-            occasional escape from a loop.
-          </p>
-
+          <h1>Posts</h1>
           {posts.length === 0 ? (
             <section class="prose-section ink-bleed">
               <h2>No posts yet</h2>
