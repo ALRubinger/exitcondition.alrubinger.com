@@ -1,18 +1,22 @@
 ---
-// Inline blinking-eyes glyph. Sits on the text baseline like an emoji,
-// scales with surrounding font-size (1em), and inherits the text color
-// via currentColor. Self-contained: vector + CSS keyframe, no JS, no
-// external assets. Respects prefers-reduced-motion per DESIGN.md's
-// motion rule.
+// Inline blinking-eyes glyph. Cartoon-style eyes (white sclera, thick
+// black rim, offset black pupil, small white highlight) that sit on
+// the text baseline like an emoji, scale with surrounding font-size,
+// and inherit text color via currentColor. Self-contained: vector +
+// CSS keyframe, no JS, no external assets. Respects
+// prefers-reduced-motion per DESIGN.md's motion rule.
 //
-// Each eye is two layered ellipses: an outlined sclera (the "white"
-// of the eye, filled with --card so it stays visibly lighter than any
-// surface the glyph lands on, outlined in currentColor), and an iris
-// filled in currentColor inside it. Both layers share the same blink
-// keyframes and the same transform-origin per eye, so the WHOLE eye
-// closes together — sclera and iris collapse in lockstep to a thin
-// horizontal line. Cadence loosely tuned to a brisk human blink rate
-// (~30/min on a 2s default cycle).
+// Each eye is a <g> containing four circles: rim (outer black), sclera
+// (white center), pupil (black, offset upper-right inside the sclera),
+// and highlight (small white dot on the pupil). The wrapping <g>'s
+// transform-origin is its own bounding-box center, so the WHOLE eye
+// collapses together — rim, sclera, pupil, and highlight squish in
+// lockstep to a thin horizontal lens. Both eyes share the same keyframes
+// so they blink in sync. Geometry comes from the public-domain
+// cartoon-eyes artwork on Openclipart, re-coordinated into a natural
+// top-down y-axis (the original used a flipped scale(1 -1) /
+// translate(0 -300) trick that we've baked out). Cadence loosely tuned
+// to a brisk human blink rate (~30/min on a 2s default cycle).
 
 interface Props {
   /** CSS time string for the full blink cycle. Lower = blinks more
@@ -36,22 +40,30 @@ const { interval = '2s', label } = Astro.props;
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
+    viewBox="0 0 600 300"
     focusable="false"
     aria-hidden="true"
   >
-    <ellipse class="be-sclera" cx="7" cy="12" rx="2.5" ry="3.5" />
-    <ellipse class="be-iris" cx="7" cy="12" rx="1.8" ry="1.8" />
-    <ellipse class="be-sclera" cx="17" cy="12" rx="2.5" ry="3.5" />
-    <ellipse class="be-iris" cx="17" cy="12" rx="1.8" ry="1.8" />
+    <g class="be-eye">
+      <circle class="be-rim" cx="157.58" cy="154.43" r="126.82" />
+      <circle class="be-sclera" cx="157.58" cy="154.43" r="110.46" />
+      <circle class="be-pupil" cx="200.39" cy="151.84" r="48.56" />
+      <circle class="be-highlight" cx="221.62" cy="136.45" r="12.36" />
+    </g>
+    <g class="be-eye">
+      <circle class="be-rim" cx="433.47" cy="155.46" r="126.82" />
+      <circle class="be-sclera" cx="433.47" cy="155.46" r="110.46" />
+      <circle class="be-pupil" cx="476.28" cy="152.87" r="48.57" />
+      <circle class="be-highlight" cx="497.51" cy="137.48" r="12.36" />
+    </g>
   </svg>
 </span>
 
 <style>
   .blinking-eyes {
     display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
+    width: 2em;
+    height: 1em;
     vertical-align: -0.225em;
     line-height: 0;
   }
@@ -61,34 +73,32 @@ const { interval = '2s', label } = Astro.props;
     height: 100%;
   }
 
-  /* Sclera = the visible "white" of the eye. Filled with --card so it
-   * stays pure white against any reasonable surface (the gray --muted
-   * background of the Tweet/Quote/Callout cards, the white --card of
-   * prose sections, the textured page background). Outlined in
-   * currentColor so the eye reads as a defined shape even on a
-   * --card-on-card surface where the fill blends in.
-   *
-   * vector-effect: non-scaling-stroke keeps the outline at a constant
-   * pixel width when the eye scales down to blink — without it, the
-   * stroke would compress along with the shape and disappear at the
-   * blink's lowest point. */
-  .be-sclera {
-    fill: var(--card);
-    stroke: currentColor;
-    stroke-width: 0.6;
-    vector-effect: non-scaling-stroke;
-  }
-  .be-iris {
+  /* Cartoon-eye palette. Rim and pupil ride currentColor so the glyph
+   * tints with surrounding text (and the closed-eye line stays
+   * readable on light AND dark surfaces). Sclera and highlight use
+   * --card so the eye reads as pure white against the gray
+   * Quote/Tweet/Callout cards, the white prose --card, and the
+   * textured page background. */
+  .be-rim {
     fill: currentColor;
   }
+  .be-sclera {
+    fill: var(--card);
+  }
+  .be-pupil {
+    fill: currentColor;
+  }
+  .be-highlight {
+    fill: var(--card);
+  }
 
-  /* Both sclera and iris share the same animation. transform-box:
-   * fill-box anchors each ellipse's transform-origin to its own
-   * bounding box, so each eye closes from both top AND bottom toward
-   * its own center. Since the sclera and iris of one eye share a
-   * center (cx, cy), they collapse in lockstep. */
-  .be-sclera,
-  .be-iris {
+  /* Each eye's four circles live inside a <g> so the whole eye
+   * collapses around one shared center. transform-box: fill-box
+   * anchors the <g>'s transform-origin to its own bounding box;
+   * transform-origin: center then puts the origin at the eye's
+   * geometric center. Both eyes share the same animation and timing,
+   * so they blink in sync. */
+  .be-eye {
     transform-box: fill-box;
     transform-origin: center;
     animation: be-blink var(--be-interval, 2s) infinite;
@@ -114,8 +124,7 @@ const { interval = '2s', label } = Astro.props;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .be-sclera,
-    .be-iris {
+    .be-eye {
       animation: none;
     }
   }
