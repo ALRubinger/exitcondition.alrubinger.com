@@ -1,0 +1,299 @@
+---
+import { fetchTweet } from '@/lib/tweets';
+import { formatDate } from '@/lib/posts';
+
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+
+// Fetched at build time from the public X syndication endpoint.
+// Throws (failing the build) when the tweet is deleted, the account
+// is protected, or the endpoint is unreachable — so authors get a
+// loud, source-located error rather than a silently empty card.
+const tweet = await fetchTweet(url);
+
+const { author, text, createdAt, likes, replies } = tweet;
+const profileUrl = `https://x.com/${author.handle}`;
+const dateFormatted = formatDate(new Date(createdAt));
+
+const compact = new Intl.NumberFormat('en-US', {
+  notation: 'compact',
+  maximumFractionDigits: 1,
+});
+const display = (n: number): string =>
+  n < 10_000 ? n.toLocaleString('en-US') : compact.format(n);
+const full = (n: number): string => n.toLocaleString('en-US');
+
+const initials = author.name
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((part) => part[0]?.toUpperCase() ?? '')
+  .join('');
+---
+
+<figure class="not-prose tweet-card">
+  <header class="tweet-card-header">
+    <a
+      href={profileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${author.name} on X`}
+      class="tweet-card-avatar no-arrow"
+    >
+      {author.avatar ? (
+        <img
+          src={author.avatar}
+          alt=""
+          width="48"
+          height="48"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          class="tweet-card-avatar-img"
+        />
+      ) : (
+        <span class="tweet-card-avatar-fallback" aria-hidden="true">
+          {initials || '@'}
+        </span>
+      )}
+    </a>
+
+    <div class="tweet-card-identity">
+      <a
+        href={profileUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="tweet-card-name no-arrow"
+      >
+        {author.name}
+        {author.verified && (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 22 22"
+            width="14"
+            height="14"
+            aria-label="Verified"
+            class="tweet-card-verified"
+          >
+            <path
+              fill="currentColor"
+              d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.751-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.541-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.273 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"
+            />
+          </svg>
+        )}
+      </a>
+      <a
+        href={profileUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="tweet-card-handle no-arrow"
+      >@{author.handle}</a>
+    </div>
+
+    <a
+      href={tweet.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tweet-card-source no-arrow"
+      aria-label="View original post on X"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="18"
+        height="18"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    </a>
+  </header>
+
+  <blockquote class="tweet-card-body" cite={tweet.url}>
+    {text}
+  </blockquote>
+
+  <a
+    href={tweet.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="tweet-card-date no-arrow"
+  >
+    <time datetime={createdAt}>{dateFormatted}</time>
+  </a>
+
+  <footer class="tweet-card-stats">
+    <span
+      class="tweet-card-stat"
+      title={`${full(likes)} likes`}
+      aria-label={`${full(likes)} likes`}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      </svg>
+      <span>{display(likes)}</span>
+    </span>
+    <span
+      class="tweet-card-stat"
+      title={`${full(replies)} replies`}
+      aria-label={`${full(replies)} replies`}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+      </svg>
+      <span>{display(replies)}</span>
+    </span>
+  </footer>
+</figure>
+
+<style>
+  .tweet-card {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.25rem 1rem;
+    background: var(--muted);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-family-sans);
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  .tweet-card-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .tweet-card-avatar {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    overflow: hidden;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    flex: none;
+  }
+  .tweet-card-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .tweet-card-avatar-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--muted-foreground);
+  }
+
+  .tweet-card-identity {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    line-height: 1.2;
+    gap: 0.125rem;
+  }
+  .tweet-card-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--foreground);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tweet-card-name:hover { text-decoration: underline; }
+  .tweet-card-verified {
+    color: var(--primary);
+    flex: none;
+  }
+  .tweet-card-handle {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    text-decoration: none;
+  }
+  .tweet-card-handle:hover { color: var(--foreground); }
+
+  .tweet-card-source {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .tweet-card-source:hover { color: var(--foreground); }
+
+  .tweet-card-body {
+    margin: 1rem 0 0;
+    padding: 0;
+    border: 0;
+    font-size: 1rem;
+    color: var(--foreground);
+    white-space: pre-wrap;
+  }
+
+  .tweet-card-date {
+    display: inline-block;
+    margin-top: 0.875rem;
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+    text-decoration: none;
+  }
+  .tweet-card-date:hover { color: var(--foreground); }
+
+  .tweet-card-stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 0.875rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+  }
+  .tweet-card-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .tweet-card-stat svg { flex: none; }
+</style>

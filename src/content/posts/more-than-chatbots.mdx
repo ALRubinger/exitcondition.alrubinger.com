@@ -1,41 +1,155 @@
 ---
 title: We Deserve More Than Chatbots
-description: They're powerful, they're open-ended, they're addictive. For most work, it's time to move on.
+description: They're powerful, they're open-ended, they're sycophantic. For most work, it's time for something else.
 date: 2026-06-07
 author: alrubinger
 ---
 
-{/* WORKING DRAFT — two sections:
-    (1) themes + emerging narrative, with evidence inline per theme
-    (2) the raw dictated transcript, lightly paragraph-broken */}
+I think AI can be better for teams. Easy to share. Simple to improve. 
+Delightful to use. And friendlier than a blinking cursor in an empty chatbot.
+
+<div class="not-prose my-10 relative" aria-hidden="true">
+  <input
+    type="text"
+    value=""
+    readonly
+    tabindex="-1"
+    class="w-full rounded-md border border-border bg-card text-foreground text-lg lg:text-xl px-5 py-4 pointer-events-none focus:outline-none select-none caret-transparent"
+  />
+  <span class="cursor-blink absolute left-5 top-1/2 -translate-y-1/2 w-[2px] h-7 bg-foreground"></span>
+</div>
+
+So I want to start there.
+
+Agentic coding may be the greatest software innovation since the web. We're 
+embracing it as a panacea. It is not.
+
+Serious engineers prioritize 
+[first principles thinking](https://en.wikipedia.org/wiki/First_principle) 
+over our excitement and momentum. That's the approach I'll take here.
+
+It's a critique that's a public thought exercise to ground how 
+I want to build differently. I'll ask us to remember respect. Every improvement I want 
+to see in the world is born from what came before.
+
+Here we go.
+
+## The Final Boss of Unopinionated Software
+
+That blinking cursor advertises freedom. It delivers friction.
+
+<SectionBreak />
+
+### The Burden of Choice
+
+A freeform text input is the laziest possible interface. It's a tacit 
+admission that "I don't know what you want; literally tell me".
+
+Google got away with it because search started as a conceptually simple 
+interaction. If I want "quick Mexican recipes", I'm eating guac within 
+the hour. I ask for relevant info, I peruse what I want, and I choose 
+one. Interaction over.
+
+Agents are a different beast. Prediction engines, 
+especially when coupled with tooling, are simultaneously extensible and 
+powerful. They're the multitool that's a screwdriver, a nail file, 
+and an MRI machine.
+
+For the first time in the history of computing we have software that can 
+conceptually do anything. It made all the sense in the world that we 
+gave it an interface that accepts anything.
+
+But we've [jumped the shark](https://en.wikipedia.org/wiki/Jumping_the_shark).
+
+Because we're prone to a psychological dichotomy. We think we want extreme 
+optionality. We don't.
+
+<Quote
+    url="https://www.psychologytoday.com/us/blog/more-tech-support/201011/the-burden-choice"
+    articleName="The Burden of Choice: Why choices wreak havoc with happiness."
+    publicationName="Psychology Today"
+    authorName="Frederick J Muench Ph.D."
+    authorX="FredMuench"
+    date="2010-11-01">
+
+    While subjects initially reported liking having the choice of 30 chocolates, 
+    they ended up being more dissatisfied and regretful of the choices they made 
+    than those who only had the choice of six.
+</Quote>
+
+More recent research, admittedly before the agentxplosion of 2025, applies this
+to our use of LLMs and grounds the findings not in happiness but reduced productivity:
+
+<Quote
+    url="https://dl.acm.org/doi/10.1145/3544548.3581388"
+    articleName="Why Johnny Can’t Prompt: How Non-AI Experts Try (and Fail) to Design LLM Prompts"
+    authorName="J.D. Zamfirescu-Pereira, Richmond Y. Wong, Bjoern Hartmann, Qian Yang"
+    date="2023-04-19">
+
+    ...while end-users can explore prompt designs opportunistically, they struggle 
+    to make robust, systematic progress. 
+</Quote>
+
+So all this flexibility is making us neither more happy nor more productive. 
+Not a remarkable win for empathetic systems design. And it introduces a more
+acute problem that's stressing people out:
+
+It's now up to users to figure out how to use this thing.
+
+### The New Tax
+
+The blinky cursor is deceptively complex. You're not just asking an LLM 
+what you type. No no, there's also the MCP servers, available tools,
+skills, 3rdparty service integrations, `AGENTS.md`/`CLAUDE.md`, 
+rules per folder, per user. 
+
+Our collective response: better educate people! Get the word out! Trainings, 
+conferences, internal enablement, live-streams! There's a full 
+influence market of newbies ingesting drops from the frontier labs and 
+immediately pumping them into AI-enhanced content machines to 
+redistribute their hard-earned expert insights.
+
+Here's the problem:
+
+<Callout>
+    AI development moves faster than any economic, social, or regulatory 
+    system can absorb. 
+</Callout>
+
+Expecting the workforce to keep pace is a second job layered on top of our
+existing jobs. It's exhausting. And if you're online enough to feel the tension:
+there's a social pressure to be excited about all the opportunity. No one wants 
+to hire or work with a downer in this Reniessance when we've just been 
+gifted the printing press.
+
+With utmost respect to these innovators, look at what's trending this weekend on 
+how we're asking folks to adopt best practices:
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-10">
+  <div>
+    <Tweet 
+      url="https://x.com/rohanpaul_ai/status/2063289804708835412"/>
+  </div>
+  <div>
+    <Tweet 
+      url="https://x.com/steipete/status/2063697162748260627"/>
+  </div>
+</div>
+
+Gentlemen. <BlinkingEyes /> The product **is** a prompt.
+
+This is perhaps the strongest signal that the product does not default to 
+the needs of many people.
+
+We're ready to introduce fresher ideas that meet more folks where they 
+are. Less expectation that people conform to the software. Or be 
+Borises or Peters, and hack their own thing to fill the missing pieces.
+
 
 ## Themes and emerging narrative
 
-{/* Each theme leads with the argument, then carries its evidence
-    inline. ★ marks the load-bearing source for that point.
-    "Counter / nuance" sources are flagged where they push back. */}
 
-### 1. The arrival story — what chatbots gave us
 
-- Cultural delight: a machine that finally talks back in something
-  believably human.
-- The blinking cursor as new paradigm: conversational search replacing
-  raw-results search.
-- Agents added tools: email, calendar, Drive, internal back-end
-  systems. A connector ecosystem appeared.
-- The big unlock: anyone can dream up custom software, custom
-  dashboards, custom workflows — by prompt.
-- The kicker — and the pivot into theme 2 — is in the
-  transcript's own words: *"anything that we can dream up, we can
-  put into a chatbot. And provided that we know how to prompt it."*
-  That "provided" is doing a lot of work. The rest of the post is
-  about what's hiding underneath it.
-
-> **Evidence — the arrival is real:**
->
-> - [McKinsey, *State of AI in 2025*](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) —
->   88% of organizations now use AI regularly. The paradigm is not
->   hype anymore; it's installed base.
 
 ### 2. The hidden cost — a tax on knowledge work
 
@@ -46,13 +160,6 @@ author: alrubinger
 > routine the latest that's coming down the pike, and that's
 > exhausting."*
 
-- We've asked every knowledge worker to "get good" at chatbots.
-- The simplest-looking interface is deceptively complex: configure
-  backends, manage skills, track vendors, absorb new features
-  constantly.
-- That's a *second job* layered on top of the first. *"We've
-  overwhelmed the public with more information than they can absorb
-  when remember that it's their job to principally do their job."*
 - Two responses, oversimplified — but careful here, the obvious
   framing is wrong:
   - The **enthusiasts** — first in the fray, leading the org, doing
@@ -66,6 +173,156 @@ author: alrubinger
 - Which means the chatbot interface isn't just an aesthetic
   complaint. It's the toll booth between the people who would gain
   most from AI and the gains themselves.
+
+> **Evidence — the blank cursor *is* the tax (burden of choice as the
+> structural mechanism).** The tax this section describes doesn't
+> begin with vendors and features — it begins one layer earlier, at
+> the prompt itself. A maximally free interface forces the user to
+> invent the problem framing before they can begin the work. The
+> blinking cursor advertises freedom; the user pays for that freedom
+> in working memory. Decades of cognitive psychology and HCI research
+> describe what that costs.
+>
+> - **★ [Zamfirescu-Pereira, Wong, Hartmann & Yang, "Why Johnny Can't Prompt: How Non-AI Experts Try (and Fail) to Design LLM Prompts," CHI 2023](https://doi.org/10.1145/3544548.3581388)** —
+>   The load-bearing empirical source for the blank-prompt problem.
+>   10 non-expert participants using an LLM-prompt design probe
+>   explored opportunistically rather than systematically,
+>   generalized incorrectly from human-to-human conversational norms,
+>   and failed to make "robust, systematic progress." The open-ended
+>   interface was the structural source of the struggle — not the
+>   model. *This is what lets us name the blinking cursor itself as
+>   the tax.*
+> - **★ [Sweller, van Merriënboer & Paas, "Cognitive Architecture and Instructional Design," *Educational Psychology Review* 1998](https://link.springer.com/article/10.1023/A:1022193728205)** —
+>   The canonical formulation of *intrinsic / extraneous / germane*
+>   cognitive load. The user's actual knowledge-work problem is the
+>   intrinsic load — already high. A blank prompt loads on top of
+>   that an *extraneous* burden — how to phrase the ask, what the
+>   system can do, where to begin — that a well-designed interface
+>   would offload to scaffolds. Builds on the founding paper,
+>   [Sweller, *Cognitive Science* 1988](https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog1202_4).
+> - **★ [Iyengar & Lepper, "When Choice Is Demotivating: Can One Desire Too Much of a Good Thing?" *Journal of Personality and Social Psychology* 2000](https://psycnet.apa.org/record/2000-16701-012)** —
+>   The "jam study" (and replication across chocolate and essay
+>   prompts). A 24-variety display attracted more browsers but
+>   produced a 3% purchase rate vs. 30% from a 6-variety display — a
+>   10× conversion collapse driven by option count alone. The
+>   foundational paper for the paradox-of-choice framing. *Cite with
+>   care: the strong unconditional version of this claim has been
+>   moderated by later meta-analyses (see Counter / nuance).*
+> - **★ [Amershi, Weld, Vorvoreanu, Fourney et al., "Guidelines for Human-AI Interaction," CHI 2019 (Microsoft Research)](https://doi.org/10.1145/3290605.3300233)** —
+>   18 design guidelines distilled from 20+ years of AI UX research
+>   and validated against 20 shipping AI products with 49 design
+>   practitioners. G2 ("make clear why AI did what it did") and G4
+>   ("make clear what the system can and cannot do") name the exact
+>   failure mode of the blank prompt: it communicates neither
+>   capability scope nor recommended action. Institutional
+>   acknowledgment, six years ago, that the blank-cursor surface was
+>   already known to be wrong.
+> - [Hick, "On the Rate of Gain of Information," *Quarterly Journal of Experimental Psychology* 1952](https://journals.sagepub.com/doi/10.1080/17470215208416600) —
+>   The founding experiment: choice reaction time grows as log₂(n+1)
+>   of the number of alternatives. Decision cost scales with option
+>   count. Foundational lab result; the HCI translation needs care
+>   (see Counter / nuance).
+> - [Proctor & Schneider, "Hick's Law for Choice Reaction Time: A Review," *QJEP* 2018](https://web.ics.purdue.edu/~dws/pubs/ProctorSchneider_2018_QJEP.pdf) —
+>   Authoritative 65-year review of follow-on work. The logarithmic
+>   relationship holds across replications, with documented boundary
+>   conditions.
+> - [Jiang et al., "PromptMaker: Prompt-Based Prototyping with Large Language Models," CHI EA 2022](https://dl.acm.org/doi/abs/10.1145/3491101.3503564) —
+>   Qualitative study of 8 designers, PMs, and content strategists
+>   in a 3-week LLM prototyping sprint. Practitioners had to
+>   "reverse-engineer" prompts without examples or scaffolds — they
+>   knew the goal, the surface gave them no path. Supporting context
+>   for the Zamfirescu-Pereira finding.
+> - [Sarkar et al., "Conversational User-AI Intervention: A Study on Prompt Rewriting for Improved LLM Response Generation," ACL 2025](https://arxiv.org/abs/2503.16789) —
+>   Lay users systematically produce suboptimal initial prompts;
+>   automated rewriting measurably improves outcomes. The rewriter
+>   is doing work the interface should have done.
+> - [Liu, "New Users Need Support with Generative-AI Tools," Nielsen Norman Group, March 2024](https://www.nngroup.com/articles/new-AI-users-onboarding/) —
+>   Practitioner research (not peer-reviewed, but NN/G is the
+>   canonical UX publisher). New low-AI-literacy users asked "Why
+>   should I ask questions?" and "Where is the input field?" — the
+>   blank interface communicated nothing about capability or
+>   expected behavior. Broad example prompts substantially
+>   outperformed niche ones for onboarding.
+> - [Norman, *The Design of Everyday Things* (revised 2013)](https://jnd.org/books/the-design-of-everyday-things-revised-and-expanded-edition/) —
+>   Canonical design theory: *affordances* signal action
+>   possibilities; *constraints* narrow the action space to make the
+>   correct action obvious; *forcing functions* prevent error by
+>   making wrong actions impossible. A blank text box affords
+>   everything and constrains nothing — the precise antithesis of
+>   the principle that good design makes the right action legible.
+> - [Loranger, "Simplicity Wins over Abundance of Choice," Nielsen Norman Group 2015](https://www.nngroup.com/articles/simplicity-vs-choice/) —
+>   Coca-Cola Freestyle case study: 100+ flavor combinations
+>   increased task completion time 6× and produced customer
+>   abandonment. Maximally free interfaces paradoxically impede task
+>   completion in the wild.
+>
+> **Counter / nuance — the strong "choice overload" claim is
+> task-conditional, not universal:**
+>
+> - **★ [Scheibehenne, Greifeneder & Todd, "Can There Ever Be Too Many Options? A Meta-Analytic Review of Choice Overload," *Journal of Consumer Research* 2010](https://academic.oup.com/jcr/article-abstract/37/3/409/1827647)** —
+>   63 experimental conditions, N=5,036, mean effect size ≈ 0.
+>   Iyengar-Lepper does not replicate uniformly. The unconditional
+>   version of the paradox-of-choice claim is empirically weak.
+> - **★ [Chernev, Böckenholt & Goodman, "Choice Overload: A Conceptual Review and Meta-Analysis," *Journal of Consumer Psychology* 2015](https://chernev.com/wp-content/uploads/2017/02/ChoiceOverload_JCP_2015.pdf)** —
+>   99 observations. The reconciliation paper: choice overload is
+>   robust *when* four moderators are present — high choice-set
+>   complexity, high decision-task difficulty, high preference
+>   uncertainty, and process-oriented (rather than outcome-oriented)
+>   decision goals. **All four describe a blank LLM prompt.** The
+>   conditional version of the claim is well-supported and is the
+>   one the post should make; the unconditional one is not.
+> - [Liu, Gori, Rioul, Beaudouin-Lafon & Guiard, "How Relevant Is Hick's Law for HCI?" CHI 2020](https://dl.acm.org/doi/abs/10.1145/3313831.3376878) —
+>   Argues Hick's Law does not naively support "fewer options always
+>   wins," and that the stimulus-response paradigm rarely applies
+>   cleanly to HCI tasks where search and recognition dominate. Cite
+>   Hick with this caveat — the load-bearing mechanism is cognitive
+>   load, not stimulus-response timing.
+>
+> **What we deliberately don't lean on — decision fatigue / ego
+> depletion:** The temptation is to write "the blank cursor causes
+> decision fatigue" and reach for Baumeister. The empirical
+> foundation for that mechanism has collapsed under preregistered
+> replication, and we should say so honestly rather than ride a
+> popular metaphor the literature no longer supports.
+>
+> - [Baumeister, Bratslavsky, Muraven & Tice, "Ego Depletion: Is the Active Self a Limited Resource?" *JPSP* 1998](https://doi.org/10.1037/0022-3514.74.5.1252) —
+>   The founding paper for the "willpower / decision fatigue as a
+>   depletable resource" frame.
+> - [Hagger et al., "A Multilab Preregistered Replication of the Ego-Depletion Effect," *Perspectives on Psychological Science* 2016](https://doi.org/10.1177/1745691616652873) —
+>   23 labs, N=2,141, preregistered direct replication. Did not
+>   replicate.
+> - [Vohs et al., "A Multisite Preregistered Paradigmatic Test of the Ego-Depletion Effect," *Psychological Science* 2021](https://pubmed.ncbi.nlm.nih.gov/34520296/) —
+>   36 labs, N=3,531 — the largest test. d=0.06, nonsignificant;
+>   Bayesian evidence ~4× favoring the null. The most definitive
+>   failure-to-replicate to date.
+>
+> The Sweller cognitive-load framing and the Zamfirescu-Pereira CHI
+> evidence do the same explanatory work without the replication
+> risk. Use those.
+>
+> *Evidence gap to acknowledge:* no peer-reviewed A/B study surfaced
+> testing whether suggested-prompt chips, starter cards, or
+> example-prompt scaffolding measurably improve chatbot adoption or
+> task-completion outcomes. The design recommendation (scaffold the
+> blank surface) is supported by cognitive load theory and the
+> *negative* evidence of what fails without scaffolding
+> (Zamfirescu-Pereira, NN/G), not by positive controlled-experiment
+> evidence. The post should say so.
+>
+> *Note for prose drafting:* the clean three-step argument the
+> citations support is — (1) most knowledge work already carries
+> high intrinsic cognitive load (Sweller); (2) a blank prompt loads
+> *extraneous* burden on top of that by forcing the user to
+> construct the problem framing from scratch (Zamfirescu-Pereira;
+> Amershi et al. G2/G4); (3) that cost is real and replicable
+> precisely under the conditions that describe LLM use — high
+> complexity, high preference uncertainty, process-oriented goals
+> (Chernev meta-analysis). The "blinking cursor advertises freedom"
+> line lands because the freedom is paid for in the user's working
+> memory. This block is the *mechanism* under the rest of section 2:
+> the vendor/skills/feature-treadmill tax sits on top of a more
+> fundamental burden the interface imposes the moment the cursor
+> blinks.
 
 > **Evidence — gains skew to novices (the empirical inversion).** The
 > finding originated in 2023 and has now been replicated and
@@ -98,6 +355,10 @@ author: alrubinger
 >   The original 453-person RCT. Foundational but now corroborated by
 >   newer, larger, peer-reviewed work; cite for lineage, not as the
 >   sole prop.
+>
+> - [McKinsey, *State of AI in 2025*](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) —
+>   88% of organizations now use AI regularly. The paradigm is not
+>   hype anymore; it's installed base.
 >
 > **Complication worth owning — the novice-gains-more claim is
 > task-conditional, not universal:**

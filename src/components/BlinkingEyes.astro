@@ -1,0 +1,122 @@
+---
+// Inline blinking-eyes glyph. Sits on the text baseline like an emoji,
+// scales with surrounding font-size (1em), and inherits the text color
+// via currentColor. Self-contained: vector + CSS keyframe, no JS, no
+// external assets. Respects prefers-reduced-motion per DESIGN.md's
+// motion rule.
+//
+// Each eye is two layered ellipses: an outlined sclera (the "white"
+// of the eye, filled with --card so it stays visibly lighter than any
+// surface the glyph lands on, outlined in currentColor), and an iris
+// filled in currentColor inside it. Both layers share the same blink
+// keyframes and the same transform-origin per eye, so the WHOLE eye
+// closes together — sclera and iris collapse in lockstep to a thin
+// horizontal line. Cadence loosely tuned to a brisk human blink rate
+// (~30/min on a 2s default cycle).
+
+interface Props {
+  /** CSS time string for the full blink cycle. Lower = blinks more
+   *  often. Default: "2s". */
+  interval?: string;
+  /** Optional accessible label. When provided, the icon is announced
+   *  via role="img" + aria-label. When omitted, the icon is
+   *  decorative and hidden from assistive tech. */
+  label?: string;
+}
+
+const { interval = '2s', label } = Astro.props;
+---
+
+<span
+  class="blinking-eyes"
+  style={`--be-interval: ${interval}`}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    focusable="false"
+    aria-hidden="true"
+  >
+    <ellipse class="be-sclera" cx="7" cy="12" rx="2.5" ry="3.5" />
+    <ellipse class="be-iris" cx="7" cy="12" rx="1.8" ry="1.8" />
+    <ellipse class="be-sclera" cx="17" cy="12" rx="2.5" ry="3.5" />
+    <ellipse class="be-iris" cx="17" cy="12" rx="1.8" ry="1.8" />
+  </svg>
+</span>
+
+<style>
+  .blinking-eyes {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: -0.225em;
+    line-height: 0;
+  }
+  .blinking-eyes svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Sclera = the visible "white" of the eye. Filled with --card so it
+   * stays pure white against any reasonable surface (the gray --muted
+   * background of the Tweet/Quote/Callout cards, the white --card of
+   * prose sections, the textured page background). Outlined in
+   * currentColor so the eye reads as a defined shape even on a
+   * --card-on-card surface where the fill blends in.
+   *
+   * vector-effect: non-scaling-stroke keeps the outline at a constant
+   * pixel width when the eye scales down to blink — without it, the
+   * stroke would compress along with the shape and disappear at the
+   * blink's lowest point. */
+  .be-sclera {
+    fill: var(--card);
+    stroke: currentColor;
+    stroke-width: 0.6;
+    vector-effect: non-scaling-stroke;
+  }
+  .be-iris {
+    fill: currentColor;
+  }
+
+  /* Both sclera and iris share the same animation. transform-box:
+   * fill-box anchors each ellipse's transform-origin to its own
+   * bounding box, so each eye closes from both top AND bottom toward
+   * its own center. Since the sclera and iris of one eye share a
+   * center (cx, cy), they collapse in lockstep. */
+  .be-sclera,
+  .be-iris {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: be-blink var(--be-interval, 2s) infinite;
+  }
+
+  /* Open for most of the cycle, snap closed with ease-in, ease back
+   * open. At the 2s default that's ~100ms close / ~150ms open / rest
+   * held open — close/open scale proportionally if the cycle is
+   * lengthened or shortened via the interval prop. */
+  @keyframes be-blink {
+    0%,
+    87.5% {
+      transform: scaleY(1);
+      animation-timing-function: ease-in;
+    }
+    92.5% {
+      transform: scaleY(0.08);
+      animation-timing-function: ease-out;
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .be-sclera,
+    .be-iris {
+      animation: none;
+    }
+  }
+</style>
