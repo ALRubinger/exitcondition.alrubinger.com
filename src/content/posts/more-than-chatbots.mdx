@@ -5,6 +5,9 @@ date: 2026-06-07
 author: alrubinger
 ---
 
+import BlinkingEyes from '@/components/BlinkingEyes.astro';
+import OpinionatedSpectrum from '@/components/OpinionatedSpectrum.astro';
+
 I think AI can be better for teams. Easy to share. Simple to improve. 
 Delightful to use. And friendlier than a blinking cursor in an empty chatbot.
 
@@ -19,35 +22,33 @@ Delightful to use. And friendlier than a blinking cursor in an empty chatbot.
   <span class="cursor-blink absolute left-5 top-1/2 -translate-y-1/2 w-[2px] h-7 bg-foreground"></span>
 </div>
 
-So I want to start there.
-
-Agentic coding may be the greatest software innovation since the web. We're 
-embracing it as a panacea. It is not.
-
-Serious engineers prioritize 
-[first principles thinking](https://en.wikipedia.org/wiki/First_principle) 
-over our excitement and momentum. That's the approach I'll take here.
-
-It's a critique that's a public thought exercise to ground how 
-I want to build differently. I'll ask us to remember respect. Every improvement I want 
-to see in the world is born from what came before.
+So I'll apply 
+[first principles thinking](https://en.wikipedia.org/wiki/First_principle) to
+inspect what makes the chatbot format effective, alluring, and 
+ill-fit for problems of many shapes.
 
 Here we go.
 
 ## The Final Boss of Unopinionated Software
 
-That blinking cursor advertises freedom. It delivers friction.
+Agentic AI may be the grandest software innovation since the web. We gave it a 
+conversational front door, one we're embracing as a panacea. It is not.
 
 <SectionBreak />
 
 ### The Burden of Choice
 
-A freeform text input is the laziest possible interface. It's a tacit 
+For the first time in the history of computing we have software that can 
+conceptually do anything. It makes logical sense that we'd pair it
+with an interface that accepts anything.
+
+At the same time, a single freeform text input is the 
+laziest possible UX. It's a tacit 
 admission that "I don't know what you want; literally tell me".
 
-Sometimes this is appropriate, or even ideal. Google got away with it because 
+Often, this is appropriate. Google gets away with it because 
 search starts as a conceptually simple 
-interaction. If I want "quick Mexican recipes", I'm eating guac within 
+interaction. If I want "quick Mexican recipes", I'm eating homemade guac within 
 the hour. I ask for relevant info, I peruse what I want, and I choose 
 one. Interaction over.
 
@@ -56,34 +57,34 @@ especially when coupled with tooling, are simultaneously extensible and
 powerful. They're the multitool that's a screwdriver, a nail file, 
 and an MRI machine.
 
-For the first time in the history of computing we have software that can 
-conceptually do anything. It made all the sense in the world that we 
-gave it an interface that accepts anything.
-
 But we've [jumped the shark](https://en.wikipedia.org/wiki/Jumping_the_shark).
 
 Because we're prone to a psychological dichotomy. We think we want extreme 
-optionality. We don't.
+optionality. We don't:
 
 <Quote
-    url="https://www.psychologytoday.com/us/blog/more-tech-support/201011/the-burden-choice"
-    articleName="The Burden of Choice: Why choices wreak havoc with happiness."
-    publicationName="Psychology Today"
-    authorName="Frederick J Muench Ph.D."
-    authorX="FredMuench"
-    date="2010-11-01">
+    url="https://psycnet.apa.org/record/2000-16701-012"
+    articleName="When choice is demotivating: Can one desire too much of a good thing?"
+    publicationName="Journal of Personality and Social Psychology"
+    authorName="Iyengar, S. S., & Lepper, M. R"
+    date="2000">
 
-    While subjects initially reported liking having the choice of 30 chocolates, 
-    they ended up being more dissatisfied and regretful of the choices they made 
-    than those who only had the choice of six.
+    The human desire for...choice is unlimited...participants actually 
+    reported greater subsequent satisfaction ... when their original set of 
+    options had been limited.
 </Quote>
 
+That's the OG study on the paradox of choice. It's cited like 3000 times, 
+basically the Beatles' *Yesterday* of academic psychology.
+
 More recent research, admittedly before the agentxplosion of 2025, applies this
-to our use of LLMs and grounds the findings not in happiness but reduced productivity:
+reasoning to our use of LLMs and grounds the findings not in happiness but 
+reduced productivity:
 
 <Quote
     url="https://dl.acm.org/doi/10.1145/3544548.3581388"
     articleName="Why Johnny Can’t Prompt: How Non-AI Experts Try (and Fail) to Design LLM Prompts"
+    publicationName="Association for Computing Machinery"
     authorName="J.D. Zamfirescu-Pereira, Richmond Y. Wong, Bjoern Hartmann, Qian Yang"
     date="2023-04-19">
 
@@ -91,24 +92,25 @@ to our use of LLMs and grounds the findings not in happiness but reduced product
     to make robust, systematic progress. 
 </Quote>
 
-So all this flexibility is making us neither more happy nor more productive. 
-Not a remarkable win for empathetic systems design. And it introduces a more
-acute problem that's stressing people out:
+So all this flexibility in agentic systems is making us neither more happy nor 
+more productive. Not a remarkable win for empathetic systems design. And it 
+introduces a more acute problem that's stressing people out:
 
-It's now up to users to figure out how to use this thing.
+We have to figure out how to use this thing.
 
-### The New Tax
+### The Second Job Tax
 
 The blinky cursor is deceptively complex. You're not just asking an LLM 
-what you type. No no, there's also the MCP servers, available tools,
+what you type. No noes, there's also the available tool descriptions,
 skills, 3rdparty service integrations, `AGENTS.md`/`CLAUDE.md`, 
-rules per folder, per user. 
+rules per folder, per user. And don't forget the features: workflows and 
+subagents and Sites and whatever else lands before I publish this.
 
 Our collective response: better educate people! Get the word out! Trainings, 
 conferences, internal enablement, live-streams! There's a full 
-influence market of newbies ingesting drops from the frontier labs and 
-immediately pumping them into AI-enhanced content machines to 
-redistribute their hard-earned expert insights.
+influence market of professional educators ingesting drops from the frontier 
+labs and immediately pumping them into content machines to 
+broadcast their expert insights.
 
 Here's the problem:
 
@@ -117,14 +119,27 @@ Here's the problem:
     system can absorb. 
 </Callout>
 
-Expecting the workforce to keep pace is a second job layered on top of our
-existing jobs. It's exhausting. And if you're online enough to feel the tension:
-there's a social pressure to be excited about all the opportunity. No one wants 
-to hire or work with a downer in this Reniessance when we've just been 
-gifted the printing press.
+Expecting the workforce to keep pace is a second job. A meta-job, one responsible
+for the efficiency of the first. 
 
-With utmost respect to these innovators, look at what's trending this weekend on 
-how we're asking folks to adopt best practices:
+So much of our narrative now is around the tools. I don't see
+a way around that for the forseeable future. We can all align around the tools, 
+no matter what we're working on. And we all have a lot to figure out together.
+
+Still, it feels like
+tokenmaxxing or screencapping how long you've kept an agent autonomous is 
+overlooking the purpose that brought us to work in the first place.
+
+<Callout>
+    Great guitarists talk about the music. Wannabes talk about the guitar.
+</Callout>
+
+Well, we're at a guitar convention and everyone's a vendor. It's 
+exhausting. And if you're online enough to feel the tension:
+there's pressure to be excited about all the opportunity. No one wants 
+to hire or work with a downer in this Renaissance.
+
+These innovators encouraged folks to adopt best practices:
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10">
   <div>
@@ -137,19 +152,35 @@ how we're asking folks to adopt best practices:
   </div>
 </div>
 
-Gentlemen. <BlinkingEyes /> The product **is** a prompt.
+"*Don't prompt it.*" Gentlemen. <BlinkingEyes /> The product **is** a prompt. 
 
-This is perhaps the strongest signal that the product does not default to 
-the needs of many people.
+Next, Sergey Brin will be telling us not to Google things on Google. 
 
-We're ready to introduce fresher ideas that meet more folks where they 
-are. Less expectation that people conform to the software. Or be 
-Borises or Peters, and hack their own thing to fill the missing pieces.
+So a harness deity and the Clawdfather advise 
+that the product's conversational design works better if you 
+build layers on top of it. I agree.
 
+Takeaways I'm filing:
+
+1. Write software that meets people where they are. Understand a constrained set of problems they want to solve, and offer ways to solve it in the most intuitive manner possible.
+2. Do not require the masses to conform to the software
+3. Most people are not Boris or Peter. Most people want to focus on their first job. 
+
+## Next up: Part Two
+
+### Who Adopts and Who Benefits
+
+<SectionBreak />
+
+<Signature />
 
 ## Themes and emerging narrative
 
+### Take a Stand
 
+Opinionated software.
+
+<OpinionatedSpectrum />
 
 
 ### 2. The hidden cost — a tax on knowledge work

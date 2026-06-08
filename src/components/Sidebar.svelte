@@ -116,7 +116,7 @@
       onclick={() => (mobileOpen = false)}
     >
       <Calendar size={16} class="shrink-0" />
-      Tell me about your team
+      Book ALR for Customer Discovery
     </a>
   </div>
 </aside>

@@ -1,0 +1,127 @@
+---
+// Diagram for §"Take a Stand" in more-than-chatbots.mdx. Visualizes
+// the unopinionated → opinionated spectrum across three
+// product-design dimensions: Powerful → Purposeful, Flexible →
+// Simple, General → Specific.
+//
+// Per DESIGN.md (~/git/ALRubinger/aileron/design/DESIGN.md):
+//   - Monochrome only. currentColor + var(--muted-foreground) +
+//     var(--border). No chromatic accent. The wedge metaphor (a
+//     shape) carries the meaning instead of color.
+//   - Typography is the hero. Aileron Black row labels in
+//     --foreground; ui-label-style tracked-out caps for the
+//     meta-axis in --muted-foreground. Weight + scale contrast does
+//     the work color would do elsewhere.
+//   - 1px lines only — the divider matches the spec's border rule.
+//   - Light direction n/a: no shadows.
+//
+// Each row's triangular wedge tapers from a wide left edge ("wide
+// possibility space") to a single point on the right ("focused
+// intent"). The shape narrows in lockstep with the labels' framing:
+// open → committed.
+//
+// Inline SVG so the figure inherits page font (Aileron via the
+// shared design tokens) and tints with surrounding text via the
+// monochrome tokens — reads correctly in both light and dark mode
+// without any per-mode rules.
+---
+
+<figure class="opinionated-spectrum">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 720 300"
+    role="img"
+    aria-labelledby="oss-title oss-desc"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <title id="oss-title">The opinionated-software spectrum</title>
+    <desc id="oss-desc">
+      Three product-design dimensions plotted from unopinionated
+      (left) to opinionated (right): Powerful narrows to Purposeful,
+      Flexible narrows to Simple, and General narrows to Specific.
+      Each row is a triangular wedge that starts wide on the left and
+      tapers to a point on the right, mirroring the shift from open
+      possibility to focused intent.
+    </desc>
+
+    <g class="oss-meta">
+      <text x="0" y="18" dominant-baseline="middle">UNOPINIONATED</text>
+      <text x="720" y="18" dominant-baseline="middle" text-anchor="end">OPINIONATED</text>
+      <line x1="170" y1="18" x2="531" y2="18" />
+      <path d="M531 12 L545 18 L531 24 Z" />
+    </g>
+
+    <line class="oss-divider" x1="0" y1="44" x2="720" y2="44" />
+
+    <g class="oss-row">
+      <text x="0" y="110" dominant-baseline="middle">Powerful</text>
+      <text x="720" y="110" dominant-baseline="middle" text-anchor="end">Purposeful</text>
+      <path class="oss-wedge" d="M170 102 L545 110 L170 118 Z" />
+    </g>
+
+    <g class="oss-row">
+      <text x="0" y="180" dominant-baseline="middle">Flexible</text>
+      <text x="720" y="180" dominant-baseline="middle" text-anchor="end">Simple</text>
+      <path class="oss-wedge" d="M170 172 L545 180 L170 188 Z" />
+    </g>
+
+    <g class="oss-row">
+      <text x="0" y="250" dominant-baseline="middle">General</text>
+      <text x="720" y="250" dominant-baseline="middle" text-anchor="end">Specific</text>
+      <path class="oss-wedge" d="M170 242 L545 250 L170 258 Z" />
+    </g>
+  </svg>
+</figure>
+
+<style>
+  .opinionated-spectrum {
+    margin: 2rem 0;
+    color: var(--foreground);
+  }
+  .opinionated-spectrum svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    font-family: var(--font-family-sans);
+  }
+
+  /* Meta-axis: tracked-out caps in --muted-foreground. A small frame
+   * for the diagram — establishes the left → right reading
+   * direction without claiming visual weight. */
+  .oss-meta text {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    fill: var(--muted-foreground);
+  }
+  .oss-meta line {
+    stroke: var(--muted-foreground);
+    stroke-width: 1.5;
+  }
+  .oss-meta path {
+    fill: var(--muted-foreground);
+  }
+
+  /* 1px divider per DESIGN.md's "no thicker than 1px" border rule. */
+  .oss-divider {
+    stroke: var(--border);
+    stroke-width: 1;
+  }
+
+  /* Row labels = the hero. Aileron Black at h3-ish scale (sized in
+   * viewBox units so the SVG scales as a whole). Weight + scale
+   * contrast carry the hierarchy; the wedge supports them. */
+  .oss-row text {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    fill: var(--foreground);
+  }
+
+  /* Wedge: triangular taper from a wide left edge to a point on the
+   * right. --muted-foreground so the shape sits behind the labels,
+   * not in front of them. The narrowing IS the spectrum metaphor. */
+  .oss-wedge {
+    fill: var(--muted-foreground);
+  }
+</style>
