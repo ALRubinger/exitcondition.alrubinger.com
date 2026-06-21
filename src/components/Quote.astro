@@ -1,0 +1,280 @@
+---
+import { formatDateLong } from '@/lib/posts';
+
+interface Props {
+  quote?: string;
+  url: string;
+  articleName: string;
+  publicationName: string;
+  authorName: string;
+  /** ISO date string like "2026-06-07" (same shape the frontmatter
+   *  accepts) or a JS Date. Optional. */
+  date?: string | Date;
+  /** Author's X (Twitter) handle, with or without leading "@".
+   *  Renders an X-logo link beside the author name. Optional. */
+  authorX?: string;
+}
+
+const {
+  quote,
+  url,
+  articleName,
+  publicationName,
+  authorName,
+  date,
+  authorX,
+} = Astro.props;
+
+const authorXHandle = authorX?.replace(/^@/, '');
+const authorXUrl = authorXHandle
+  ? `https://x.com/${authorXHandle}`
+  : undefined;
+
+// Accept the same shape z.coerce.date() accepts in the content
+// collection — a YYYY-MM-DD string parses as UTC midnight, which
+// pairs with formatDateLong's timeZone: 'UTC' so the displayed day
+// matches the authored day regardless of viewer locale. Partial
+// strings (YYYY or YYYY-MM) downshift the display to match the
+// granularity the author supplied.
+const dateStr = typeof date === 'string' ? date : undefined;
+const precision: 'year' | 'month' | 'day' = dateStr
+  ? /^\d{4}$/.test(dateStr)
+    ? 'year'
+    : /^\d{4}-\d{2}$/.test(dateStr)
+      ? 'month'
+      : 'day'
+  : 'day';
+const dateObj = date
+  ? date instanceof Date
+    ? date
+    : new Date(date)
+  : undefined;
+const dateFormatted = dateObj
+  ? precision === 'year'
+    ? dateObj.toLocaleDateString('en-US', {
+        year: 'numeric',
+        timeZone: 'UTC',
+      })
+    : precision === 'month'
+      ? dateObj.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          timeZone: 'UTC',
+        })
+      : formatDateLong(dateObj)
+  : undefined;
+const dateIso = dateObj
+  ? precision === 'year'
+    ? dateObj.toISOString().slice(0, 4)
+    : precision === 'month'
+      ? dateObj.toISOString().slice(0, 7)
+      : dateObj.toISOString().slice(0, 10)
+  : undefined;
+---
+
+<figure class="not-prose quote-callout">
+  <span class="quote-callout-mark quote-callout-mark-open" aria-hidden="true">
+    &ldquo;
+  </span>
+
+  <blockquote class="quote-callout-body" cite={url}>
+    {quote ? <p>{quote}</p> : <slot />}
+  </blockquote>
+
+  <span class="quote-callout-mark quote-callout-mark-close" aria-hidden="true">
+    &rdquo;
+  </span>
+
+  <figcaption class="quote-callout-cite">
+    <span class="quote-callout-author">
+      {authorName}
+      {authorXUrl && (
+        <a
+          href={authorXUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${authorName} on X`}
+          class="quote-callout-author-x no-arrow"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="14"
+            height="14"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+      )}
+    </span>
+    <span class="quote-callout-source">
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="quote-callout-article no-arrow"
+      >
+        <cite>{articleName}</cite>
+        <span aria-hidden="true"> ↗</span>
+      </a>
+      <span class="quote-callout-separator" aria-hidden="true">·</span>
+      <span class="quote-callout-publication">{publicationName}</span>
+      {dateFormatted && (
+        <>
+          <span class="quote-callout-separator" aria-hidden="true">·</span>
+          <time class="quote-callout-date" datetime={dateIso}>
+            {dateFormatted}
+          </time>
+        </>
+      )}
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  /* Pull-quote callout. Inset on the white prose-section card via a
+   * muted background, border, and rounded corners — matching the
+   * PostHeader treatment so all "lifted content" blocks share one
+   * surface vocabulary. */
+  .quote-callout {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  /* Oversized quote marks frame the body vertically. Open hangs at
+   * top-left, close hangs at bottom-right, mirroring how a printed
+   * pull-quote sets quotation glyphs as architecture rather than
+   * punctuation. Aileron Black at --text-5xl with tight line-height. */
+  .quote-callout-mark {
+    display: block;
+    font-family: var(--font-family-sans);
+    font-weight: var(--font-weight-black);
+    font-size: var(--text-5xl-size);
+    line-height: 0.6;
+    color: var(--foreground);
+    opacity: 0.18;
+    user-select: none;
+  }
+  .quote-callout-mark-open {
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+  .quote-callout-mark-close {
+    text-align: right;
+    margin-top: 0.5rem;
+    /* The close mark is a smart-quote glyph; nudge it onto the baseline
+     * so the descender doesn't visually drift below the row. */
+    transform: translateY(0.35em);
+  }
+
+  /* Body in the lead role, italicized to read as a quotation without
+   * leaning on quote glyphs for that signal (the big marks above do
+   * the work). Slightly tighter leading than body prose since each
+   * line is short. */
+  .quote-callout-body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: var(--font-family-sans);
+    font-size: var(--role-lead-size);
+    line-height: 1.55;
+    letter-spacing: var(--role-lead-tracking);
+    font-weight: var(--role-lead-weight);
+    font-style: italic;
+    color: var(--foreground);
+  }
+  .quote-callout-body :global(p) {
+    margin: 0 0 0.75rem;
+  }
+  .quote-callout-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* Attribution block. A thin --border rule separates it from the
+   * body. Author in ui-label (Black 800) for weight contrast against
+   * the italic Regular quote. Article and publication in body-sm. */
+  .quote-callout-cite {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-style: normal;
+  }
+  .quote-callout-author {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-family-sans);
+    font-size: var(--role-ui-label-size);
+    line-height: var(--role-ui-label-line-height);
+    font-weight: var(--role-ui-label-weight);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--foreground);
+  }
+  .quote-callout-author-x {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .quote-callout-author-x:hover {
+    color: var(--foreground);
+  }
+  .quote-callout-source {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--font-family-sans);
+    font-size: var(--role-body-sm-size);
+    line-height: var(--role-body-sm-line-height);
+    color: var(--muted-foreground);
+  }
+  .quote-callout-article {
+    color: var(--foreground);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+  }
+  .quote-callout-article cite {
+    font-style: italic;
+  }
+  .quote-callout-article:hover {
+    opacity: 0.75;
+  }
+  .quote-callout-separator {
+    color: var(--muted-foreground);
+    opacity: 0.6;
+  }
+  .quote-callout-publication {
+    color: var(--muted-foreground);
+  }
+  .quote-callout-date {
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* On wider viewports the muted card breathes more and the quote
+   * marks gain a bit more presence. */
+  @media (min-width: 640px) {
+    .quote-callout {
+      padding: 2rem;
+    }
+    .quote-callout-mark {
+      font-size: var(--text-6xl-size);
+    }
+  }
+</style>

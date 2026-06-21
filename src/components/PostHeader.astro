@@ -27,7 +27,7 @@ if (imagePath && !heroImages[imagePath]) {
 
 <header class="post-header">
   <div class="post-header-text">
-    <h1 class="post-header-title">{title}</h1>
+    <h1 id="post-title" class="post-header-title">{title}</h1>
     <p class="post-header-date">
       Published on{' '}
       <b><time datetime={date.toISOString()}>{formatDateLong(date)}</time></b>

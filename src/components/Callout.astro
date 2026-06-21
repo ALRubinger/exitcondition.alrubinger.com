@@ -1,0 +1,74 @@
+---
+// Callout — emphasis block for the author's own voice. Sets a passage
+// apart from the surrounding body prose without attribution. For
+// external attributed quotations, use <Quote /> instead.
+//
+// The visual differentiation is purely typographic + spatial —
+// weight (Aileron Black), scale (h4 → h3 step at sm+), and rhythm
+// (generous vertical padding). No surface, no shadow, no border-left
+// blockquote variant. Aligns with DESIGN.md's rule that hierarchy
+// comes from typography and rhythm, not decoration.
+---
+
+<aside class="not-prose callout">
+  <slot />
+</aside>
+
+<style>
+  .callout {
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    font-family: var(--font-family-sans);
+    font-size: var(--role-h4-size);
+    line-height: 1.35;
+    letter-spacing: var(--role-h4-tracking);
+    font-weight: var(--role-h4-weight);
+    color: var(--foreground);
+  }
+
+  /* Short decorative rules above and below. They mark the callout as
+   * lifted out of the surrounding prose without claiming the visual
+   * weight of a section card. 1px --foreground at reduced opacity
+   * keeps the monochrome palette intact. */
+  .callout::before,
+  .callout::after {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--foreground);
+    opacity: 0.4;
+    margin: 0 auto;
+  }
+  .callout::before {
+    margin-bottom: 1.25rem;
+  }
+  .callout::after {
+    margin-top: 1.25rem;
+  }
+
+  /* MDX may wrap inline text in <p>. Strip the default prose-style
+   * margins so the callout's own rhythm controls spacing. */
+  .callout :global(p) {
+    margin: 0 0 0.5rem;
+  }
+  .callout :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* At sm+ the prose column gives the callout room to step up to the
+   * h3 scale. The size jump matches the design system's step-snap
+   * pattern for display elements. */
+  @media (min-width: 640px) {
+    .callout {
+      font-size: var(--role-h3-size);
+      line-height: 1.3;
+      letter-spacing: var(--role-h3-tracking);
+      padding: 2rem;
+    }
+  }
+</style>

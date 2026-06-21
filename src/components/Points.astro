@@ -1,0 +1,45 @@
+---
+// Points — horizontal row of 2–5 numbered <Point> children used to
+// call out the big ideas of a passage. Each child auto-numbers in
+// DOM order via a CSS counter on this container, so authors don't
+// thread an index prop through every point.
+//
+// Per DESIGN.md (~/git/ALRubinger/aileron/design/DESIGN.md):
+//   - Monochrome only. No surface, no shadow — the typographic
+//     numeral and a 1px hairline carry the emphasis. Reaching for a
+//     muted card here would duplicate what scale + weight already do.
+//   - Hierarchy from typography and rhythm: oversized Aileron Black
+//     numbers above the body, generous gap between columns.
+//   - 1px borders only (the hairline under each numeral).
+//
+// Layout: CSS grid with `repeat(auto-fit, minmax(0, 1fr))` at sm+
+// so 2, 3, 4, or 5 children lay out evenly across the prose width
+// without per-count branching. Below sm the row collapses to a
+// single stacked column — at mobile widths a 4-up row of points
+// would shrink each idea to an unreadable sliver.
+---
+
+<div class="points not-prose">
+  <slot />
+</div>
+
+<style>
+  .points {
+    counter-reset: point;
+    margin: 2.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* At sm+ the prose column has room for the horizontal row.
+   * minmax(0, 1fr) lets every column shrink equally so 4 or 5
+   * points still fit without one outsized column dominating. */
+  @media (min-width: 640px) {
+    .points {
+      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+      gap: 2.5rem;
+      margin: 3rem 0;
+    }
+  }
+</style>

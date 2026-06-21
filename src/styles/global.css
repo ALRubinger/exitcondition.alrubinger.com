@@ -83,6 +83,13 @@
 	* {
 		@apply border-border;
 	}
+	html {
+		/* Offset anchor-link jumps by the fixed header height (h-16 = 4rem)
+		 * plus a little breathing room, so headings land below the navbar
+		 * instead of being clipped behind it. */
+		scroll-padding-top: 5rem;
+		scroll-behavior: smooth;
+	}
 	body {
 		@apply bg-background text-foreground font-sans;
 		background-image: var(--pattern-page);
@@ -130,7 +137,6 @@
 		margin-top: 0;
 		margin-bottom: 1.5rem;
 		color: var(--foreground);
-		filter: var(--effect-ink-bleed);
 	}
 	@media (min-width: 640px)  { :where(.prose) h1 { font-size: 3rem; } }
 	@media (min-width: 1024px) { :where(.prose) h1 { font-size: var(--role-display-size); } }

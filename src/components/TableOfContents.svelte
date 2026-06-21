@@ -7,11 +7,17 @@
     depth: number;
   };
 
-  let { headings = [] }: { headings?: Heading[] } = $props();
+  let { title, headings = [] }: { title?: string; headings?: Heading[] } = $props();
   let activeSlug = $state('');
 
-  // Filter to h2 and h3 only
-  const tocHeadings = $derived(headings.filter(h => h.depth >= 2 && h.depth <= 3));
+  // Prepend the post title as a depth-1 entry pointing at the h1's id,
+  // then filter to the title + h2/h3 so the TOC mirrors the page's
+  // top-level structure.
+  const TITLE_SLUG = 'post-title';
+  const tocHeadings = $derived([
+    ...(title ? [{ slug: TITLE_SLUG, text: title, depth: 1 }] : []),
+    ...headings.filter(h => h.depth >= 2 && h.depth <= 3),
+  ]);
 
   onMount(() => {
     const elements = tocHeadings

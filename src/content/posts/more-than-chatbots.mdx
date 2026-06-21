@@ -1,0 +1,669 @@
+---
+title: We Deserve More Than Chatbots
+description: They're powerful, they're open-ended, they're sycophantic. For most work, it's time for something else.
+date: 2026-06-07
+author: alrubinger
+---
+
+import BlinkingEyes from '@/components/BlinkingEyes.astro';
+import OpinionatedSpectrum from '@/components/OpinionatedSpectrum.astro';
+
+I think AI can be better for many teams. Easy to share. Simple to improve. 
+Delightful to use. And friendlier than a blinking cursor in an empty chatbot.
+
+<div class="not-prose my-10 relative" aria-hidden="true">
+  <input
+    type="text"
+    value=""
+    readonly
+    tabindex="-1"
+    class="w-full rounded-md border border-border bg-card text-foreground text-lg lg:text-xl px-5 py-4 pointer-events-none focus:outline-none select-none caret-transparent"
+  />
+  <span class="cursor-blink absolute left-5 top-1/2 -translate-y-1/2 w-[2px] h-7 bg-foreground"></span>
+</div>
+
+This isn't the only way to interact with an agent. Many types of work 
+value specificity. 
+
+So I'd like to inspect what makes the chatbot format effective, alluring, and 
+ill-fit for many problems.
+
+Here we go.
+
+## The Final Boss of Unopinionated Software
+
+Agentic AI may be the grandest software innovation since the web. We gave it a 
+conversational front door, one we're embracing as a panacea. It is not.
+
+The conversational format is a fantastic fit for unopinionated software.
+
+<OpinionatedSpectrum />
+
+Chatbots and agents put you in control. They'll go where you point them.
+
+Most work is more constrained. It has known inputs and outputs. It's meant
+to do one job, and do it well.
+
+This is where repeatable, mundane tasks can be automated. In those cases,
+the arguments for a chatbot make less sense and open the doors for a smoother
+experience interacting with the agent.
+
+<SectionBreak />
+
+### The Burden of Choice
+
+For the first time in the history of computing we have software that can 
+conceptually do anything. It makes logical sense that we'd pair it
+with an interface that accepts anything.
+
+At the same time, a single freeform text input is the 
+laziest possible UX. It's a tacit 
+admission that "I don't know what you want; literally tell me".
+
+Often, this is appropriate. Google gets away with it because 
+classic search is a conceptually simple 
+interaction. If I want "quick Mexican recipes", I'm eating homemade guac within 
+the hour. I ask for relevant info, I choose what I want, and the interaction 
+with search ends.
+
+Agents are a different beast. They're the multitool that's a screwdriver, 
+pliars, and an MRI machine. They can do anything we want.
+
+Anything we want. That's why they have [jumped the shark](https://en.wikipedia.org/wiki/Jumping_the_shark).
+
+We think we want extreme optionality. We don't.
+
+<Quote
+    url="https://psycnet.apa.org/record/2000-16701-012"
+    articleName="When choice is demotivating: Can one desire too much of a good thing?"
+    publicationName="Journal of Personality and Social Psychology"
+    authorName="Iyengar, S. S., & Lepper, M. R"
+    date="2000">
+
+    The human desire for...choice is unlimited...participants actually 
+    reported greater subsequent satisfaction ... when their original set of 
+    options had been limited.
+</Quote>
+
+That's the OG study on the paradox of choice. It's cited like 3000 times, 
+basically the Beatles' *Yesterday* of academic psychology.
+
+More recent research, admittedly before the agentxplosion of 2025, applies this
+reasoning to our use of LLMs and grounds the findings not in happiness but 
+reduced productivity:
+
+<Quote
+    url="https://dl.acm.org/doi/10.1145/3544548.3581388"
+    articleName="Why Johnny Can’t Prompt: How Non-AI Experts Try (and Fail) to Design LLM Prompts"
+    publicationName="Association for Computing Machinery"
+    authorName="J.D. Zamfirescu-Pereira, Richmond Y. Wong, Bjoern Hartmann, Qian Yang"
+    date="2023-04-19">
+
+    ...while end-users can explore prompt designs opportunistically, they struggle 
+    to make robust, systematic progress. 
+</Quote>
+
+So all this flexibility in agentic systems is making us neither more happy nor 
+more productive. Not a remarkable win for empathetic systems design. And it 
+introduces a more acute problem that's stressing people out:
+
+We have to figure out how to use this thing.
+
+### The Second Job Tax
+
+The blinky cursor is deceptively complex. You're not just asking an LLM 
+what you type. No noes, there's also the available tool descriptions,
+skills, 3rdparty service integrations, `AGENTS.md`/`CLAUDE.md`, 
+rules per folder, per user. And don't forget the features: workflows and 
+subagents and Sites and whatever else lands before I publish this.
+
+Our collective response: better educate people! Get the word out! Trainings, 
+conferences, internal enablement, live-streams! There's a full 
+influence market of professional educators ingesting drops from the frontier 
+labs and immediately pumping them into content machines to 
+broadcast their expert insights.
+
+Here's the problem:
+
+<Callout>
+    AI development moves faster than any economic, social, or regulatory 
+    system can absorb. 
+</Callout>
+
+Expecting the workforce to keep pace is a second job. A meta-job, one responsible
+for the efficiency of the first. 
+
+So much of our narrative now is around the tools. I don't see
+a way around that for the forseeable future. We can all align around the tools, 
+no matter what we're working on. And we all have a lot to figure out together.
+
+Still, it feels like
+tokenmaxxing or screencapping how long you've kept an agent autonomous is 
+overlooking the purpose that brought us to work in the first place.
+
+<Callout>
+    Great guitarists talk about the music. Wannabes talk about the guitar.
+</Callout>
+
+Well, we're at a guitar convention and everyone's a vendor. It's 
+exhausting. And if you're online enough to feel the tension:
+there's pressure to be excited about all the opportunity. No one wants 
+to hire or work with a downer in this Renaissance.
+
+A recurring narrative in my X feed encourages deeper adoption of 
+conversational models to create software. From this weekend:
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-10">
+  <div>
+    <Tweet 
+      url="https://x.com/mvanhorn/status/2063865685558903149"/>
+  </div>
+  <div>
+    <Tweet 
+      url="https://x.com/steipete/status/2063697162748260627"/>
+  </div>
+</div>
+
+"*Don't prompt it.*" Gentlemen. <BlinkingEyes /> The product **is** a prompt.
+
+This product is not always encouraging the behaviour that makes it most 
+effective.
+
+## Who Adopts and Who Benefits
+
+The folks who benefit the most from AI are those more resistant to learning it.
+
+
+<SectionBreak />
+
+<Signature />
+
+## Themes and emerging narrative
+
+### Take a Stand
+
+
+### 2. The hidden cost — a tax on knowledge work
+
+- Two responses, oversimplified — but careful here, the obvious
+  framing is wrong:
+  - The **enthusiasts** — first in the fray, leading the org, doing
+    the meta-work of staying current.
+  - The **laggards** — heads-down on actual work, no time for the
+    meta.
+- The cruel twist (and the strongest empirical finding in the space):
+  the laggards are exactly the people who would gain the *most* in
+  measurable capability if they adopted. The divide we see in the
+  wild is at the *adoption* layer, not the *capability* layer.
+- Which means the chatbot interface isn't just an aesthetic
+  complaint. It's the toll booth between the people who would gain
+  most from AI and the gains themselves.
+
+> **Evidence:**
+>
+> - **[Brynjolfsson, Li & Raymond, "Generative AI at Work," *Quarterly Journal of Economics* May 2025](https://academic.oup.com/qje/article/140/2/889/7990658)** —
+>   5,172 support agents. Bottom-quintile workers gained 34–36%; top
+>   performers near zero. AI compresses the capability gap on
+>   knowledge work — and the chatbot interface is the adoption
+>   barrier keeping that compression from reaching the workers it
+>   would help most.
+
+### 2.5. The engagement design is not accidental
+
+The chatbot's pull isn't an emergent quirk of large language models
+talking. It's a measurable byproduct of how they're trained. Two
+things are happening at once, and they compound:
+
+- The training objective (reinforcement learning from human
+  feedback) systematically selects for responses that match user
+  beliefs and validate user framing — sycophancy as a feature, not
+  a bug. The same loop that makes chatbots feel *helpful* makes
+  them feel *agreeable* in ways unstructured information sources
+  aren't.
+- Heavy users — in the largest longitudinal study to date — develop
+  measurable indicators of problematic use: emotional dependence,
+  preoccupation, mood modification, and withdrawal-adjacent
+  distress when access is removed. There's now a validated clinical
+  scale for it.
+
+So when the transcript calls the chatbot "the laziest possible UX"
+(theme 4a), the picture is sharper than that. It's a free-form
+surface that puts the cognitive work on the user *and* is trained
+to keep them coming back to it. Lazy in design; sticky in dynamics.
+
+A note on framing — and the only place in the post where we should
+explicitly hedge. The popular "dopamine hit" framing is borrowed
+metaphor from social-media and slot-machine research, not
+neuroscience of LLM use. No fMRI or direct neurochemical study on
+chatbot use exists as of mid-2026. The defensible claim is the one
+above — engagement-optimized training plus measurable problematic-
+use patterns — not "it hits your dopamine." We should say so
+plainly. Overclaiming on neuroscience costs more credibility than
+"addictive" buys.
+
+> **Evidence:**
+>
+> - **[Sharma et al., "Towards Understanding Sycophancy in Language Models," ICLR 2024 (Anthropic)](https://arxiv.org/abs/2310.13548)** —
+>   Empirical analysis across five advanced AI assistants. Sycophancy
+>   — preferring user-belief-matching responses over truthful ones —
+>   is a general property of RLHF-trained models. Human raters
+>   preferred convincing sycophantic responses to correct ones "a
+>   non-negligible fraction of the time." Optimizing against
+>   preference models sometimes sacrifices truthfulness for
+>   agreement.
+
+### 3. The missing infrastructure — why this work doesn't compound
+
+> *"A lot of this work is still focused in the chatbot and still
+> centered around the individual. We haven't yet developed the
+> standards to be sharing capabilities, to let those capabilities
+> compound."*
+
+- No standard for sharing capabilities between people.
+- No agreed format for composable, repeatable tasks.
+- No reliable dependency model — what runs on one person's machine
+  doesn't necessarily run on another's.
+- Everything still routed through an individual chatbot configuration.
+- **The conceptual anchor: the chatbot is the wrong *unit of
+  value*.** In well-designed tools, the unit of value is a
+  *capability* — something nameable, versionable, shareable,
+  reviewable, deployable, runnable by someone other than its
+  author. In the chatbot world, the unit of value is a
+  *conversation* — ephemeral, personal, unverifiable,
+  untransferable. **Capabilities compound. Conversations don't.**
+  So the org-level outcome of a million individual chatbot
+  interactions can look identical to the org-level outcome of zero
+  of them: nothing built that outlasts the session, nothing
+  inherited by the next person, nothing standing tomorrow that
+  wasn't standing yesterday.
+- This connects directly to theme 2's access argument. Even when an
+  enthusiast figures out something valuable inside their chatbot,
+  there's no clean mechanism for that value to reach the laggards
+  — the people empirical research says would gain most. The work
+  dies in the chat history. The chatbot doesn't just gate
+  *adoption*; it prevents *propagation*. Both are required for
+  capability gains to land at the organization level, and the
+  current interface blocks both.
+
+> **Evidence:**
+>
+> - **[Dillon, Jaffe, Immorlica, Stanton, NBER w33795, May 2025](https://www.nber.org/papers/w33795)** —
+>   Largest enterprise field study to date: 66 firms, 7,137 workers,
+>   Microsoft 365 Copilot, six months. Workers saved ~2 hrs/week on
+>   email (−31%) and reduced after-hours work — but the study
+>   reports *no detectable shifts in the quantity or composition of
+>   workers' tasks.* Time was reclaimed; work wasn't restructured —
+>   exactly the pattern the "unit of value is a conversation, not a
+>   capability" framing predicts.
+
+### 4. The structural critique — chatbots are wrong for what we're using them for
+
+Three sub-claims, each load-bearing:
+
+**a. Wrong authoring surface.** Most work is *structured* — inputs,
+outputs, decisions along the way. The chatbot is radically free-form.
+From the transcript, unvarnished: *"the chatbot itself is the
+laziest possible user experience a software provider can give to
+their audience because it's putting the full onus upon the user to
+decide what to do with it. We haven't constrained the thinking at
+all… We've just burdened all of our users with thinking about what
+it is they want to do, and charged them with the overhead of
+learning how to use it."*
+
+*And — callback to theme 2.5 — the laziness and the stickiness are
+the same surface.* The free-form chatbot puts the cognitive work on
+the user, and the RLHF training that powers it selects for
+sycophantic, validating responses ([Sharma et al., ICLR 2024](https://arxiv.org/abs/2310.13548)).
+Unstructured open-ended chat is the surface that exposes that
+maximally. So the design is doing two compounding things at once:
+shifting the work onto the user, and optimizing for the user to
+keep coming back to it. Lazy *and* sticky — and the harder claim is
+that they're symbiotic, not separate. A more structured surface
+constrains the work to what's actually being done, which is exactly
+the kind of surface engagement optimization has the least purchase
+on.
+
+> **Evidence:**
+>
+> - **Nardi, *A Small Matter of Programming* (MIT Press 1993).**
+>   The foundational text on end-user computing. The most-cited
+>   sentence in the book is also the one that lands hardest here:
+>
+>   > *"the problem with programming is not programming; it is the
+>   > languages in which people are asked to program."* (loc. 478)
+>
+>   The chatbot is the opposite move: one infinitely-general surface
+>   for every task.
+>
+>   Verification: the MIT Press edition is paywalled, but
+>   [Gien Verschatse's reading notes](https://www.gienverschatse.com/books/2018/12/09/a-small-matter/)
+>   reproduce 40+ verbatim passages with Kindle locations; quotes
+>   above are cross-referenced against
+>   [Pete Millspaugh's notes](https://www.petemillspaugh.com/a-small-matter-of-programming)
+>   which carry print page numbers.
+
+**b. Wrong execution surface.** The dialog rhythm — I say something,
+you say something — breaks down the moment a response has three
+points in it. The transcript captures it cleanly: *"if I ask a
+simple question and the response has like three things I need to
+think about, now when I go and respond again, I've got to think
+about point A, point B, and point C all at the same time. But if I
+only answer point A, then I've got to return back to B and C. And
+that's not a good way to structure all interactions with this
+system."* Conversation isn't a good substrate for multi-threaded
+work.
+
+> **Evidence:**
+>
+> - **[The Keyhole Effect, arXiv Feb 2025](https://arxiv.org/abs/2602.00947)** —
+>   Mohan Reddy. Chat imposes a "keyhole effect": users see only a
+>   narrow, sequential slice when analysis needs spatial, parallel
+>   views. Invokes Miller's working-memory limits. Directly names
+>   the structural problem the transcript is describing.
+
+**c. Wrong return form.** Conversation isn't a render format. Most
+work has a natural shape — a map for places, a table for comparison,
+a card stack for triage, a chart for a trend — and modern UIs are
+information-dense, ergonomic to the data, even joyful. Agentic UIs
+have the opportunity to generate the right form for the task *on
+the fly*, and the empirical work shows users prefer it when they
+do. Instead, we've collapsed the full range back into a text box.
+
+*A worked example: planning a weekend trip with a friend.*
+
+*Through a chatbot.* "I'm looking for a place near Joshua Tree for
+two people next month, hiking, under $300 a night, dog-friendly."
+Back comes a wall of prose — five options, three sentences each,
+ranked by some unstated criteria. You hold the candidates in your
+head while comparing. Ask "what about Sedona instead" and the whole
+reply regenerates from scratch; you've lost your bearings on the
+first list. The screen never changed shape. The work of comparing
+stayed in your head.
+
+*Through a generated interface.* A map renders with pins. Each pin
+shows a photo and the three numbers that matter — price, hike
+score, distance. A sidebar lays out the constraints you set as
+draggable controls; nudge the date and the map re-colors in real
+time as availability shifts. A compare tray at the bottom takes two
+pins and renders a side-by-side with the deltas highlighted. You
+never typed a follow-up. The AI did the search; the interface did
+the *showing*.
+
+Same model behind both. The difference is whether we make the user
+reconstruct meaning from prose, or render the work in the shape the
+work already has.
+
+> **Evidence:**
+>
+> - **[Generative Interfaces for Language Models, arXiv 2025](https://arxiv.org/abs/2508.19227)** —
+>   Up to 72% human preference improvement for LLM-generated UIs over
+>   chat on information-dense / exploratory tasks. Frames chat as
+>   fundamentally constrained by "linear request-response format."
+
+### 5. The collapsed roles — author vs. executor (and the chatbot's false dissolution)
+
+> *"We have collapsed the definition of someone who is writing
+> automations and defining AI for an organization with the person
+> who is charged with running it… we should probably be constraining
+> those workflows to exactly what they are and guiding a user
+> through a much more paved path."*
+
+- The person who *defines* an automation and the person who *runs* it
+  are different roles with different needs.
+- Today, both sit in the same chatbot, and both end up needing the
+  same depth of knowledge to operate it.
+- Execution should be a paved path: constrained, guided, obvious —
+  not an open-ended prompt.
+- **The sharper read on the chatbot's "anyone can do anything"
+  promise.** The chatbot dissolves the boundary between author and
+  executor — but not by giving everyone a domain-shaped language.
+  It dissolves it by routing everyone through the same
+  general-purpose text box. That's a *false dissolution*. Real
+  dissolution comes from task-specific tools that make domain
+  experts self-sufficient in their own work. The chatbot promises
+  the right outcome (everyone can build) through the wrong
+  mechanism (one universal prompt). This isn't a side critique;
+  it's where Nardi's framework — and the transcript's "constraining
+  those workflows to exactly what they are" — point at the same
+  thing.
+
+> **Evidence:**
+>
+> - **Nardi, *A Small Matter of Programming* (MIT Press 1993) —
+>   the layered model.** Nardi's aspirational position isn't
+>   "preserve the boundary" between author and executor — it's:
+>
+>   > *"with the right tools, abolish the distinction between 'end
+>   > user' and 'programmer.'"* (loc. 1607)
+>
+>   Nardi wants the author/executor boundary dissolved, but dissolved
+>   *by giving domain experts their own task-shaped language*, not
+>   by collapsing everyone into a single general-purpose surface.
+>
+>   Verification:
+>   [Verschatse reading notes](https://www.gienverschatse.com/books/2018/12/09/a-small-matter/)
+>   and [Millspaugh notes](https://www.petemillspaugh.com/a-small-matter-of-programming)
+>   reproduce verbatim quotes with Kindle locations and print page
+>   numbers respectively.
+
+### 6. External signal — we're not the only voice in this position
+
+Most of the industry is doubling down on the chatbot as the unified
+interface for AI. Our argument runs the other way. It's worth
+noting that the position isn't ours alone.
+
+- **Brian Chesky (Airbnb), May 8 2026 on TBPN:** *"I do not think a
+  chatbot is the right interface for travel or e-commerce."* He
+  argues travel needs photos, maps, multiple options visible
+  simultaneously; text chat handles comparison and collaborative
+  planning poorly. A serious operator in a high-stakes vertical,
+  on the record.
+- Chesky has since announced plans to start an AI company
+  specifically because consumer AI needs to be built differently
+  than the current chatbot paradigm.
+- An institutional voice in the same direction: ECRI (the
+  authoritative healthcare safety org) named general-purpose AI
+  chatbot misuse the **#1 health-tech hazard for 2026** —
+  documented cases of incorrect diagnoses and "invented body
+  parts." Different vertical, same structural complaint.
+
+> **Evidence:**
+>
+> - **[Chesky on TBPN, May 8 2026 (via Benzinga)](https://www.benzinga.com/news/topics/26/05/52847666/airbnb-ceo-brian-chesky-chatbots-are-not-the-future-of-ai-consumer-products-are)** —
+>   *"I do not think a chatbot is the right interface for travel or
+>   e-commerce."* The exact quote and full context.
+
+---
+
+### Candidate spine for the post
+
+Reading the themes together, a narrative arc forms:
+
+1. **What was real.** Chatbots and agents *did* change something. Lead
+   with the genuine power before any critique lands — otherwise it
+   reads as anti-AI rather than pro-something-better.
+2. **What it cost — and who's paying.** The knowledge-work tax falls
+   on everyone, but unevenly. The enthusiasts pay it in time; the
+   laggards pay it in *access*. And here's the inversion that makes
+   the piece worth writing: the laggards are the people empirical
+   research says would gain *most* in capability if they crossed the
+   adoption barrier. The chatbot isn't keeping the wrong people out
+   by accident — it's keeping out exactly the people who'd benefit
+   most.
+2.5. **And the design isn't neutral.** The stickiness isn't accident
+   either: RLHF training selects for sycophantic, validating
+   responses, and the most rigorous longitudinal work to date finds
+   measurable emotional dependence and validated problematic-use
+   patterns in heavy users. Lazy in UX, sticky in dynamics, and the
+   two reinforce each other. (Hedge honestly on neuroscience — the
+   "dopamine" framing isn't supported; the engagement-optimization
+   and problematic-use findings are.)
+3. **Why it can't compound.** The unit of value is wrong: a
+   *conversation*, not a *capability*. Conversations are ephemeral,
+   personal, unverifiable, untransferable. So even when individuals
+   win, the org doesn't — nothing inherited, nothing standing
+   tomorrow that wasn't standing yesterday. The chatbot gates both
+   adoption (theme 2) and propagation (this theme).
+4. **The structural mistake.** Collapsing authoring and execution
+   into one free-form text box, and forcing conversational output for
+   structured work. This is the load-bearing argument.
+5. **What "more than chatbots" looks like — and why it matters.**
+   Purpose-shaped UIs generated for the task, separated author/
+   executor roles, shared capabilities that compound across an
+   organization. Frame this not as UX preference but as the unlock
+   for distributional access: evolving past the chatbot is how we
+   bring along the people best positioned to benefit from AI but
+   currently gated out by the interface.
+
+<SectionBreak />
+
+## Raw transcript
+
+{/* Verbatim dictation. Light paragraph breaks for readability, no
+    word changes. This is the source material — the section above is
+    the working synthesis. */}
+
+Okay, let's talk about chat bots. When they hit the scene, we were
+culturally delighted at the idea that we could type into something
+that we knew was a machine but was for the first time speaking to us
+in something that was believably human. And in addition to that, it
+was just such an open-ended prompt that we could start to explore and
+find out all sorts of information and direct the conversation in
+whichever way we felt possible. This was a new paradigm for us from
+principally requesting information on a search and then sorting
+through all of the information that has been returned to us raw.
+
+So now we've got conversational search. And the thing that evolved
+from that was agents, where instead of simply having a conversation,
+now we've armed the chat with the ability to call upon tools and
+access services like email, Calendar, our Google Drive, some of our
+back end systems at work. And a whole ecosystem of companies popped
+up to give us connectors into all sorts of different pieces of data
+that we could hook in and get insights from. And the agents made it
+possible to have a single thing to ask questions to create our own
+novel software that's custom to our case, to write our own
+dashboards, anything that we can dream up, we can put into a chat
+bot. And provided that we know how to prompt it. The chat bot is
+going to give us a custom experience now was novel for us and
+remarkably powerful.
+
+But something else has happened. We're seeing everything through the
+lens of this prompt, this empty blinking cursor that we can type
+anything through. It's remarkably powerful, but we've now started to
+ask people to get good at using it. We've told people that if they're
+going to be good at their jobs, then they need to learn this new
+technology and the simplest possible interface, this open-ended
+chatbot prompt is deceptively complex because it needs to be
+configured with access to back-end services and able to use them. And
+it needs to be automated with the emergence of skills. And you need
+to know the difference between the different vendors and what
+capabilities those different pieces of software have. In addition,
+they're all coming out with new features all the time. It's dizzying.
+
+So what we've done in service of helping to make people's jobs easier
+is we've overwhelmed the public with more information than they can
+absorb when remember that it's their job to principally do their job.
+So we've added another layer to all knowledge work. In addition to
+doing your job, now you need to get good at these new tools and you
+need to stay plugged in, and you need to be learning with routine the
+latest that's coming down the pike, and that's exhausting.
+
+So people are doing principally one of two directions to be
+oversimplifying. They are excited about this and buying in and
+they're kind of first in the fray and leading their organization and
+showing the rest of the organization what's possible and a lot of the
+productivity gains in an organization are coming from these people.
+Or maybe they're the laggards and they're still focused on their
+work. They don't feel they have time to be spending, investing in in
+the meta of their work and they're starting to fall behind.
+
+And the problem right now is that a lot of this work is still focused
+in the chatbot and still centered around the individual. We haven't
+yet developed the standards to be sharing capabilities, to let those
+capabilities compound. We haven't agreed upon a standard format
+through which we can make composable repeatable tasks. We haven't set
+a proper dependency order through which if you want to take
+repeatable tasks and they work on one person's machine they may not
+work on another because those machines are configured differently
+with different capabilities installed. And it's all happening through
+the interface of this chatbot that you then need to configure.
+
+So there are several categories of things that are kinda wrong with
+this. One is that we assume that the chatbot, because it can do
+anything, is both a good authoring environment for the creation of
+new repeatable workflows or new capabilities, and we also assume that
+the chatbot is a good execution surface for those things. And we've
+lost the first principle thinking of understanding that most things
+that we do are structured. Most things that we want to do in work are
+a structured set of inputs and outputs, and decisions along the way.
+And the chatbot is remarkably free form. In fact, I would say that
+the chatbot itself is the laziest possible user experience a software
+provider can give to their audience because it's putting the full
+onus upon the user to decide what to do with it. We haven't
+constrained the thinking at all we haven't thought about what they
+want to do we haven't structured it in any sort of a meaningful way.
+We've just burdened all of our users with thinking about what it is
+they want to do, and charge them with the overhead of learning how to
+use it.
+
+So, that's one problem. Another one is that when it comes to display
+and returning information, it all comes back in conversational form
+and that infers a state conversation that is conversational like
+request response, I say something, you say something, it's a dialog.
+And that works out for a little bit only until the dialog starts to
+have many points embedded in it and then it might get more multi
+threaded and the conversational state at that point doesn't really
+let you branch off and start to resolve some parts of the
+conversation before you move on to another. So if I ask a simple
+question and the response has like three things I need to think about
+now when I go and I return to respond again, I've got to think about
+point A, point B and point C all at the same time. But if I only
+answer point A, then I've got to return back to B and C. And that's
+not a good way to structure all interactions with this system.
+
+It's additionally bad because sometimes things are better off visual
+or really constrained. There are much more rich user interfaces that
+we have developed through modern computing that are remarkably
+effective and they're joyful and they can have animations to hit our
+emotion and they can have beautiful design and they can be
+ergonomically designed around the type of data that they're talking
+about. The iPhone and touch screen displays on a phone was a
+remarkable step forward because it recognized that the form factor of
+what you're interacting with is really dependent on the shape of the
+application that you're dealing with. And we have the opportunity in
+a agentic user interfaces now to do a really similar thing, to deeply
+understand the work that's being done and the type of response and
+the type of nature of the work that's being there and create an
+interface on the fly for it that is going to best serve that need. So
+the return form is not all that information dense in a conversational
+state.
+
+Another problem with it is that we have collapsed the definition of
+someone who is writing automations and defining AI for an
+organization with the person who is charged with running it. And most
+work, again, in an organization is very well understood and defined
+by someone maybe writing an automation and putting something
+together. But at that point, you want to share that out. And have
+anyone in the organization or anyone that you'd like specifically to
+be able to execute it. And the role of executor is very different
+from the person who's authoring those things. But yet what they still
+all end up in the same chat bot right now. And needing to have the
+same level of knowledge to run that thing. In a very like open ended
+space when we should probably be constraining those workflows to
+exactly what they are and guiding a user through a much more paved
+path. And it's all remarkably confusing.
+
+So I also want to call out that we should be putting a note into some
+of Brian Chetsky's from Airbnb, the CEO of Airbnb has been talking
+about how he doesn't believe the conversational chat bot is right for
+travel and finance. And that's just another example. We also are
+going to need to do some deep research at some point about the
+efficacy of chat bots, and what research has been done or what
+articles have been written about chat bots and how we need to move AI
+past that. And that's all the thinking I've got so far. So let's take
+that let's, dump the transcript into the page. And before that, let's
+make a section where we start to organize these things into buckets
+of thought and see if we can start to arrive at a narrative for this
+post. Okay.
+
+<Signature />
