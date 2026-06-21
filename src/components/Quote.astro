@@ -33,14 +33,43 @@ const authorXUrl = authorXHandle
 // Accept the same shape z.coerce.date() accepts in the content
 // collection — a YYYY-MM-DD string parses as UTC midnight, which
 // pairs with formatDateLong's timeZone: 'UTC' so the displayed day
-// matches the authored day regardless of viewer locale.
+// matches the authored day regardless of viewer locale. Partial
+// strings (YYYY or YYYY-MM) downshift the display to match the
+// granularity the author supplied.
+const dateStr = typeof date === 'string' ? date : undefined;
+const precision: 'year' | 'month' | 'day' = dateStr
+  ? /^\d{4}$/.test(dateStr)
+    ? 'year'
+    : /^\d{4}-\d{2}$/.test(dateStr)
+      ? 'month'
+      : 'day'
+  : 'day';
 const dateObj = date
   ? date instanceof Date
     ? date
     : new Date(date)
   : undefined;
-const dateFormatted = dateObj ? formatDateLong(dateObj) : undefined;
-const dateIso = dateObj ? dateObj.toISOString() : undefined;
+const dateFormatted = dateObj
+  ? precision === 'year'
+    ? dateObj.toLocaleDateString('en-US', {
+        year: 'numeric',
+        timeZone: 'UTC',
+      })
+    : precision === 'month'
+      ? dateObj.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          timeZone: 'UTC',
+        })
+      : formatDateLong(dateObj)
+  : undefined;
+const dateIso = dateObj
+  ? precision === 'year'
+    ? dateObj.toISOString().slice(0, 4)
+    : precision === 'month'
+      ? dateObj.toISOString().slice(0, 7)
+      : dateObj.toISOString().slice(0, 10)
+  : undefined;
 ---
 
 <figure class="not-prose quote-callout">

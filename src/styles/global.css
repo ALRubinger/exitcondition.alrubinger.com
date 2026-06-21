@@ -83,6 +83,13 @@
 	* {
 		@apply border-border;
 	}
+	html {
+		/* Offset anchor-link jumps by the fixed header height (h-16 = 4rem)
+		 * plus a little breathing room, so headings land below the navbar
+		 * instead of being clipped behind it. */
+		scroll-padding-top: 5rem;
+		scroll-behavior: smooth;
+	}
 	body {
 		@apply bg-background text-foreground font-sans;
 		background-image: var(--pattern-page);

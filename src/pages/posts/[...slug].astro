@@ -7,6 +7,8 @@ import Signature from '../../components/Signature.astro';
 import Tweet from '../../components/Tweet.astro';
 import Quote from '../../components/Quote.astro';
 import Callout from '../../components/Callout.astro';
+import Points from '../../components/Points.astro';
+import Point from '../../components/Point.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) =>
@@ -34,7 +36,7 @@ if (entry.data.author && !author) {
 // rehype-section-wrapper plugin. They render nothing themselves but
 // must be in scope for MDX so authors can use them without an
 // explicit import in every file.
-const components = { SectionBreak, SectionResume, Signature, Tweet, Quote, Callout };
+const components = { SectionBreak, SectionResume, Signature, Tweet, Quote, Callout, Points, Point };
 ---
 
 <PostLayout

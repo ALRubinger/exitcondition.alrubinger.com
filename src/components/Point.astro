@@ -1,0 +1,76 @@
+---
+// Point — one numbered idea inside <Points>. The numeral is
+// rendered by a CSS counter on the parent container, so the value
+// matches DOM order and authors never need to pass an index.
+//
+// Visual treatment per DESIGN.md: oversized Aileron Black numeral
+// (the hero), 1px hairline rule, body prose below. No surface, no
+// color — scale + weight + spatial rhythm carry the emphasis.
+---
+
+<div class="point">
+  <span class="point-number" aria-hidden="true"></span>
+  <div class="point-body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .point {
+    counter-increment: point;
+    display: flex;
+    flex-direction: column;
+    /* Slightly less than the surrounding column gap so the number,
+     * hairline, and body read as one unit rather than three rows. */
+    gap: 1rem;
+  }
+
+  /* Big numeral above a hairline rule — the editorial pull-quote
+   * pattern. decimal-leading-zero gives "01, 02, …" which reads as
+   * deliberate display at this scale; plain "1, 2" would feel like
+   * list-item leftovers. */
+  .point-number {
+    display: block;
+    font-family: var(--font-family-sans);
+    font-weight: var(--font-weight-black);
+    font-size: var(--text-5xl-size);
+    line-height: 1;
+    letter-spacing: var(--text-5xl-tracking);
+    color: var(--foreground);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+  .point-number::before {
+    content: counter(point, decimal-leading-zero);
+  }
+
+  /* Body holds whatever the author wrote — a short phrase, a single
+   * sentence, or a small paragraph. body-lg gives the points a touch
+   * more presence than surrounding prose so the row reads as
+   * elevated content, without claiming heading weight. */
+  .point-body {
+    font-family: var(--font-family-sans);
+    font-size: var(--role-body-lg-size);
+    line-height: var(--role-body-lg-line-height);
+    letter-spacing: var(--role-body-lg-tracking);
+    font-weight: var(--role-body-lg-weight);
+    color: var(--foreground);
+  }
+  .point-body :global(p) {
+    margin: 0 0 0.5rem;
+  }
+  .point-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* At sm+ the prose column gives the numeral room to step up to
+   * the 6xl scale — matches the step-snap pattern other display
+   * elements use (see Quote.astro, h1). */
+  @media (min-width: 640px) {
+    .point-number {
+      font-size: var(--text-6xl-size);
+      letter-spacing: var(--text-6xl-tracking);
+    }
+  }
+</style>
